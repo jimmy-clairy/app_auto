@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--cl-primary: #5178eb;
+	--cl-hover: #5178eb4d;
+	--shadow: 0px 0px 4px rgb(128, 128, 128);
+	--rad: 5px;
+	--gap: 2rem;
+}
+
+html {
+	font-size: 62.5%;
+	user-select: none;
+}
+
+body {
+	max-width: 1400px;
+	height: 120vh;
+	margin: auto;
+	padding: 1.6rem;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1.6em;
+	text-align: center;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 1.6rem;
+	padding: 1rem;
+	background-color: var(--cl-primary);
+	color: white;
+}
+
+header img {
+	height: 6rem;
+	margin-left: 1rem;
+}
+
+header h1 {
+	flex: 1;
+	font-size: clamp(2.4rem, 6vw, 3.2rem);
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+}
+
+.filtres {
+	border-radius: var(--rad);
+	box-shadow: var(--shadow);
+	padding: 1rem;
+}
+
+input[name=price] {
+	cursor: pointer;
+}
+
+.formulaire-avis label {
+	display: block;
+	margin-bottom: 1rem;
+}
+
+.fiches {
+	width: 100%;
+}
+
+.details div {
+	background-color: var(--cl-hover);
+	padding: 1rem;
+	margin-bottom: 2rem;
+}
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--gap);
+}
+
+.card {
+	width: 100%;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+	border-radius: var(--rad);
+	transition: .3s;
+}
+
+.font-bold {
+	font-weight: 600;
+}
+
+.card__img {
+	max-width: 15rem;
+}
+
+.card p {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.card button {
+	margin-top: auto;
+	cursor: pointer;
+	width: 100%;
+}
+
+.card__avis {
+	background-color: rgb(236, 236, 236);
+	border-radius: var(--rad);
+	padding: 1rem;
+	text-align: left;
+}
+
+.effet-shadow {
+	box-shadow: var(--shadow);
+}
+
+.effet-hover:hover {
+	background-color: var(--cl-hover)
+}
+
+.abordables,
+.dispo {
+	text-align: left;
+}
+
+.btn {
+	margin-bottom: 1.5rem;
+	border: none;
+	width: 100%;
+	font-size: 1.6rem;
+	padding: .5rem;
+	cursor: pointer;
+	border-radius: var(--rad);
+	box-shadow: var(--shadow);
+	background-color: #c9c9c900;
+	transition: .3s;
+}
+
+.btn:hover {
+	background-color: var(--cl-hover);
+}
+
+@media screen and (min-width: 800px) {
+
+	header,
+	main {
+		flex-direction: row;
+	}
+
+	.filtres {
+		flex: none;
+		width: 300px;
+	}
+}
+
+@media screen and (min-width: 900px) {
+	.card {
+		width: calc(50% - var(--gap)/2);
+
+	}
+
+	.content {
+		min-height: 41rem;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	.details {
+		display: flex;
+		gap: var(--gap);
+	}
+
+	.details div {
+		width: calc(50% - var(--gap)/2);
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.card {
+		width: calc(33.33% - (var(--gap)*2)/3);
+	}
+}
