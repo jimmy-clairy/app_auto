@@ -33,7 +33,7 @@ body {
 	font-size: 1.6rem;
 	padding: .5rem;
 	cursor: pointer;
-	background-color: #c9c9c900;
+	background-color: #ffffff;
 	transition: .3s;
 }
 
@@ -97,9 +97,21 @@ main {
 	cursor: pointer;
 }
 
+.formulaire-avis {
+	background-color: var(--cl-hover);
+	padding: 1rem 1rem 0;
+	border-radius: var(--rad);
+	margin-top: 2rem;
+}
+
 .formulaire-avis label {
 	display: block;
 	margin-bottom: 1rem;
+}
+
+.formulaire-avis input {
+	border: var(--cl-primary) 1px solid;
+	border-radius: var(--rad);
 }
 
 canvas {
