@@ -1,4 +1,5 @@
-import { afficherGraphiqueAvis, afficherGraphiqueDisponibles, postAvis } from "./js/avis.js"
+import { postAvis } from "./js/avis.js"
+import { chartAvis, chartFree } from "./js/chart.js"
 import { Card } from "./js/createCard.js"
 
 let pieces = window.localStorage.getItem("Les bonnes Piéces - Pieces")
@@ -17,10 +18,11 @@ function showCard(pieces) {
         cards.appendChild(new Card(piece))
     }
 }
+
 showCard(pieces)
 postAvis()
-await afficherGraphiqueAvis()
-await afficherGraphiqueDisponibles()
+chartAvis()
+chartFree()
 
 const filterLabel = document.getElementById("rangePrice")
 filterLabel.addEventListener("change", () => {
@@ -28,6 +30,7 @@ filterLabel.addEventListener("change", () => {
     cards.innerHTML = ""
     showCard(piecesFilter)
 })
+
 // Card pieces abordables
 const piecesLowCost = pieces.filter((piece) => piece.prix <= 35)
 const cardLowCost = fiches.querySelector(".abordables")
@@ -79,3 +82,7 @@ btnFilterDispo.addEventListener("click", () => {
 })
 const btnUpdate = document.querySelector(".filtres .btn-maj")
 btnUpdate.addEventListener("click", () => localStorage.removeItem("Les bonnes Piéces - Pieces"))
+
+// Modifie le nombre input.max selon le nombre de pieces
+const inputIdPiece = document.getElementById('pieceId')
+inputIdPiece.max = pieces.length

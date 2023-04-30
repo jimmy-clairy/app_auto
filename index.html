@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Les Bonnes Pièces</title>
+	<title>Pieces Auto</title>
 	<link rel="stylesheet" href="styles.css">
 	<script type="module" src="app.js"></script>
 	<script src="node_modules/chart.js/dist/chart.umd.js" defer></script>
@@ -12,26 +12,26 @@
 
 <body>
 	<header>
-		<img src="images/logo-les-bonnes-pieces.png" alt="LOGO">
-		<h1>Les Bonnes Pièces</h1>
+		<img src="images/car.jpg" alt="LOGO">
+		<h1>Pieces Auto</h1>
 	</header>
 	<main>
 		<!-- Menu de recherche -->
-		<section class="filtres">
+		<section class="filtres border">
 			<h3>Filtres</h3>
 			<div class="wrapper">
-				<button class="btn btn-try">Trier par prix croissants</button>
-				<button class="btn btn-detry">Trier par prix décroissants</button>
-				<button class="btn btn-filter">Filtrer les pièces abordables</button>
-				<button class="btn btn-filter-desc">Filtrer les pièces avec une description</button>
-				<button class="btn btn-filter-dispo">Filtrer les pièces avec une disponible</button>
-				<p>Prix</p>
+				<button class="btn border btn-try">Trier par prix croissants</button>
+				<button class="btn border btn-detry">Trier par prix décroissants</button>
+				<button class="btn border btn-filter">Filtrer les pièces abordables</button>
+				<button class="btn border btn-filter-desc">Filtrer les pièces avec une description</button>
+				<button class="btn border btn-filter-dispo">Filtrer les pièces avec une disponible</button>
 				<label for="rangePrice">
+					<p class="font-bold">Prix</p>
 					0<input type="range" name="price" id="rangePrice" min="0" max="60" step="5">60
 				</label>
 			</div>
-			<h3>Ajouter un avis</h3>
 			<form class="formulaire-avis">
+				<h3>Formulaire avis</h3>
 				<label for="pieceId">
 					Identifiant de la pièce :<br>
 					<input type="number" name="pieceId" id="pieceId" required min="1" max="5">
@@ -48,26 +48,30 @@
 					Nombre d'étoiles :<br>
 					<input type="number" name="nbEtoiles" id="nbEtoiles" required min="1" max="5">
 				</label>
-				<button>Envoyer</button>
+				<button class="btn border">Envoyer</button>
 			</form>
 			<h3>Données</h3>
-			<button class="btn-maj">Mettre à jour les pièces</button>
-			<h3>Aperçu des avis</h3>
-			<canvas id="graphique-avis" width="150" height="150"></canvas>
-			<h3>Aperçu des pieces disponible</h3>
-			<canvas id="graphique-dispo" width="150" height="150"></canvas>
+			<button class="btn border btn-maj">Mettre à jour les pièces</button>
+			<div class="graphiques">
+				<div class="graph">
+					<h3>Aperçu des avis</h3>
+					<canvas id="graphique-avis" width="150" height="150"></canvas>
+				</div>
+				<div class="graph">
+					<h3>Aperçu des pieces disponible</h3>
+					<canvas id="graphique-dispo" width="150" height="150"></canvas>
+				</div>
+			</div>
 		</section>
 
 		<!-- Fiches produits -->
 		<section class="fiches">
 			<div class="details">
 				<div class="abordables">
-					<p>Pièces abordables :</p>
-
+					<h4>Pièces abordables :</h4>
 				</div>
 				<div class="dispo">
-					<p>Pièces disponible :</p>
-
+					<h4>Pièces disponible :</h4>
 				</div>
 			</div>
 
@@ -75,6 +79,10 @@
 
 		</section>
 	</main>
+	<footer>
+		<img src="images/car.jpg" alt="LOGO">
+		<h1>Pieces Auto</h1>
+	</footer>
 </body>
 
 </html>

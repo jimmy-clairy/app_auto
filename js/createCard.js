@@ -20,7 +20,7 @@ export class Card {
         img.src = piece.image
 
         const content = document.createElement("div")
-        content.setAttribute("class", "content effet-shadow effet-hover")
+        content.setAttribute("class", "content border")
 
         const title = document.createElement("h3")
         title.innerText = piece.nom
@@ -45,6 +45,7 @@ export class Card {
 
         const btnAvis = document.createElement("button")
         btnAvis.setAttribute("data-id", piece.id)
+        btnAvis.setAttribute("class", "btn border")
         btnAvis.innerHTML = "Afficher les avis"
         btnAvis.addEventListener("click", (e) => this.showAvis(e))
 

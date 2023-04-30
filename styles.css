@@ -5,8 +5,8 @@
 }
 
 :root {
-	--cl-primary: #5178eb;
-	--cl-hover: #5178eb4d;
+	--cl-primary: #eb5151;
+	--cl-hover: #eb51514d;
 	--shadow: 0px 0px 4px rgb(128, 128, 128);
 	--rad: 5px;
 	--gap: 2rem;
@@ -21,13 +21,38 @@ body {
 	max-width: 1400px;
 	height: 120vh;
 	margin: auto;
-	padding: 1.6rem;
+	padding: 1rem 3%;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 1.6em;
 	text-align: center;
 }
 
-header {
+.btn {
+	border: none;
+	width: 100%;
+	font-size: 1.6rem;
+	padding: .5rem;
+	cursor: pointer;
+	background-color: #c9c9c900;
+	transition: .3s;
+}
+
+.btn:hover {
+	background-color: var(--cl-hover);
+}
+
+.font-bold {
+	font-weight: 600;
+}
+
+.border {
+	box-shadow: var(--shadow);
+	border-radius: var(--rad);
+}
+
+/* ------------- HEADER ------------- */
+header,
+footer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -35,31 +60,40 @@ header {
 	padding: 1rem;
 	background-color: var(--cl-primary);
 	color: white;
+	border-radius: var(--rad);
 }
 
-header img {
-	height: 6rem;
+header img,
+footer img {
+	height: 12rem;
 	margin-left: 1rem;
+	border-radius: var(--rad);
 }
 
-header h1 {
+header h1,
+footer h1 {
 	flex: 1;
 	font-size: clamp(2.4rem, 6vw, 3.2rem);
 }
 
+/* ------------- MAIN ------------- */
 main {
 	display: flex;
 	flex-direction: column;
 	gap: var(--gap);
+	padding-bottom: 2rem;
 }
 
+/* ------------- FILTRES ------------- */
 .filtres {
-	border-radius: var(--rad);
-	box-shadow: var(--shadow);
 	padding: 1rem;
 }
 
-input[name=price] {
+.filtres .btn {
+	margin-bottom: 1.5rem;
+}
+
+.filtres input[name=price] {
 	cursor: pointer;
 }
 
@@ -68,14 +102,19 @@ input[name=price] {
 	margin-bottom: 1rem;
 }
 
+canvas {
+	max-height: 25rem;
+}
+
 .fiches {
-	width: 100%;
+	flex: 1;
 }
 
 .details div {
 	background-color: var(--cl-hover);
 	padding: 1rem;
 	margin-bottom: 2rem;
+	text-align: left;
 }
 
 .cards {
@@ -92,28 +131,21 @@ input[name=price] {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
 	padding: 1rem;
-	border-radius: var(--rad);
 	transition: .3s;
 }
 
-.font-bold {
-	font-weight: 600;
-}
-
 .card__img {
-	max-width: 15rem;
+	max-height: 10rem;
+	width: 100%;
+	object-fit: cover;
+	border-radius: var(--rad);
 }
 
 .card p {
-	margin-top: 4px;
-	margin-bottom: 4px;
-}
-
-.card button {
-	margin-top: auto;
-	cursor: pointer;
-	width: 100%;
+	margin-top: .5rem;
+	margin-bottom: .5rem;
 }
 
 .card__avis {
@@ -123,46 +155,43 @@ input[name=price] {
 	text-align: left;
 }
 
-.effet-shadow {
-	box-shadow: var(--shadow);
-}
+@media screen and (min-width: 620px) {
+	canvas {
+		min-height: 25rem;
+	}
 
-.effet-hover:hover {
-	background-color: var(--cl-hover)
-}
+	.graph {
+		width: 50%;
+	}
 
-.abordables,
-.dispo {
-	text-align: left;
-}
+	.graphiques {
+		display: flex;
+	}
 
-.btn {
-	margin-bottom: 1.5rem;
-	border: none;
-	width: 100%;
-	font-size: 1.6rem;
-	padding: .5rem;
-	cursor: pointer;
-	border-radius: var(--rad);
-	box-shadow: var(--shadow);
-	background-color: #c9c9c900;
-	transition: .3s;
-}
-
-.btn:hover {
-	background-color: var(--cl-hover);
+	.card {
+		width: calc(50% - var(--gap)/2);
+	}
 }
 
 @media screen and (min-width: 800px) {
 
 	header,
-	main {
+	main,
+	footer {
 		flex-direction: row;
 	}
 
 	.filtres {
 		flex: none;
 		width: 300px;
+	}
+
+	.graphiques {
+		flex-direction: column;
+	}
+
+	.graph {
+		width: 100%;
 	}
 }
 
