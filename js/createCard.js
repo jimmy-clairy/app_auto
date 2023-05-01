@@ -11,16 +11,23 @@ export class Card {
     * @returns {HTMLElement}
     */
     constructor(piece) {
+        console.log(piece);
         const card = document.createElement("div")
         card.setAttribute("class", "card")
         card.setAttribute("data-id", piece.id)
 
+        const newPiece = document.createElement("div")
+        if (piece.newPiece) {
+            newPiece.setAttribute("class", "newPiece")
+            newPiece.innerText = "Nouveau"
+        }
+
+        const content = document.createElement("div")
+        content.setAttribute("class", "card__content border")
+
         const img = document.createElement("img")
         img.setAttribute("class", "card__img")
         img.src = piece.image
-
-        const content = document.createElement("div")
-        content.setAttribute("class", "content border")
 
         const title = document.createElement("h3")
         title.innerText = piece.nom
@@ -35,7 +42,6 @@ export class Card {
         const categorie = document.createElement("p")
         categorie.innerText = piece.categorie ?? "(aucune catégorie)"
 
-
         const description = document.createElement("p")
         description.innerText = piece.description ?? "Pas de description pour le moment."
 
@@ -45,38 +51,12 @@ export class Card {
 
         const btnAvis = document.createElement("button")
         btnAvis.setAttribute("data-id", piece.id)
-        btnAvis.setAttribute("class", "btn border")
+        btnAvis.setAttribute("class", "card__btn btn border")
         btnAvis.innerHTML = "Afficher les avis"
-        btnAvis.addEventListener("click", (e) => this.showAvis(e))
 
-        card.append(content)
+        card.append(newPiece, content)
         content.append(img, title, idPiece, price, categorie, description, disponible, btnAvis)
 
         return card
-    }
-
-    async showAvis(e) {
-        const id = e.target.dataset.id
-        const content = e.target.parentElement.parentElement
-
-        const res = await fetch(`http://localhost:8081/pieces/${id}/avis`);
-        const avis = await res.json();
-        console.log(avis);
-        if (document.querySelector('.card__avis')) {
-            const avisElement = document.querySelector('.card__avis')
-            avisElement.textContent = ''
-            for (const avi of avis) {
-                avisElement.innerHTML += `<b>${avi.utilisateur}:</b> ${avi.commentaire} <br>`
-            }
-            content.append(avisElement)
-        } else {
-            const avisElement = document.createElement('p')
-            avisElement.setAttribute('class', 'card__avis')
-            for (const avi of avis) {
-                avisElement.innerHTML += `<b>${avi.utilisateur}:</b> ${avi.commentaire} <br>`
-            }
-            content.append(avisElement)
-        }
-        // localStorage.setItem(`Les bonnes Piéces - Avis-${id}`, JSON.stringify(avis))
     }
 }

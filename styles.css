@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 * {
 	box-sizing: border-box;
@@ -6,10 +6,11 @@
 
 :root {
 	--cl-primary: #eb5151;
-	--cl-hover: #eb51514d;
+	--cl-hover: #ffbaba;
 	--shadow: 0px 0px 4px rgb(128, 128, 128);
 	--rad: 5px;
 	--gap: 2rem;
+	--gradient: linear-gradient(165deg, rgba(255, 0, 8, 1) 0%, rgba(0, 0, 0, 1) 19%, rgba(255, 0, 8, 1) 33%, rgba(0, 0, 0, 1) 70%, rgba(255, 0, 8, 1) 88%);
 }
 
 html {
@@ -18,13 +19,11 @@ html {
 }
 
 body {
-	max-width: 1400px;
-	height: 120vh;
-	margin: auto;
-	padding: 1rem 3%;
-	font-family: 'Montserrat', sans-serif;
+	font-family: sans-serif;
 	font-size: 1.6em;
 	text-align: center;
+	margin: 0;
+	/* background-color: black; */
 }
 
 .btn {
@@ -56,24 +55,23 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-bottom: 1.6rem;
 	padding: 1rem;
-	background-color: var(--cl-primary);
+	background: rgb(255, 0, 8);
+	background: var(--gradient);
 	color: white;
-	border-radius: var(--rad);
 }
 
 header img,
 footer img {
 	height: 12rem;
-	margin-left: 1rem;
 	border-radius: var(--rad);
 }
 
 header h1,
 footer h1 {
 	flex: 1;
-	font-size: clamp(2.4rem, 6vw, 3.2rem);
+	font-family: Courgette, "Helvetica Neue", Helvetica, sans-serif;
+	font-size: 4rem;
 }
 
 /* ------------- MAIN ------------- */
@@ -81,27 +79,73 @@ main {
 	display: flex;
 	flex-direction: column;
 	gap: var(--gap);
-	padding-bottom: 2rem;
+	width: 90%;
+	max-width: 140rem;
+	margin: auto;
+	padding: 2rem 0;
 }
 
 /* ------------- FILTRES ------------- */
 .filtres {
+	padding: 1rem 1rem 0;
+}
+
+summary {
+	text-align: left;
+	font-size: 1.8rem;
+	font-weight: bold;
 	padding: 1rem;
+	list-style: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--cl-hover);
+	border-radius: var(--rad);
+	margin-bottom: 1rem;
+}
+
+summary::after {
+	content: "🛆";
+	display: inline-block;
+	transition: 0.3s ease-out;
+}
+
+details[open] summary::after {
+	transform: rotate(-180deg);
 }
 
 .filtres .btn {
 	margin-bottom: 1.5rem;
 }
 
-.filtres input[name=price] {
+.filtres .range {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.filtres input[type="range"] {
+	background: var(--cl-hover);
+	border: solid 1px var(--cl-primary);
+	border-radius: 10px;
+	height: .8rem;
+	outline: none;
 	cursor: pointer;
+	-webkit-appearance: none;
+}
+
+.filtres input[type='range']::-webkit-slider-thumb {
+	width: 1.5rem;
+	-webkit-appearance: none;
+	height: 1.5rem;
+	background: rgb(255, 0, 0);
+	border-radius: 50%;
 }
 
 .formulaire-avis {
-	background-color: var(--cl-hover);
-	padding: 1rem 1rem 0;
+	padding: 1rem;
 	border-radius: var(--rad);
-	margin-top: 2rem;
 }
 
 .formulaire-avis label {
@@ -112,6 +156,8 @@ main {
 .formulaire-avis input {
 	border: var(--cl-primary) 1px solid;
 	border-radius: var(--rad);
+	padding: 0.3rem;
+	font-size: 1.6rem;
 }
 
 canvas {
@@ -122,13 +168,19 @@ canvas {
 	flex: 1;
 }
 
-.details div {
+.fiches details div {
 	background-color: var(--cl-hover);
+	border-radius: var(--rad);
 	padding: 1rem;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 	text-align: left;
 }
 
+.details h4 {
+	margin-top: 0;
+}
+
+/* ------------- CARDS ------------- */
 .cards {
 	display: flex;
 	flex-wrap: wrap;
@@ -137,9 +189,38 @@ canvas {
 
 .card {
 	width: 100%;
+	position: relative;
 }
 
-.content {
+.newPiece {
+	position: absolute;
+	background-color: #eb5151;
+	color: #fff;
+	border-radius: 0 var(--rad) 0 var(--rad);
+	padding: .5rem;
+	right: 0;
+	animation: newPiece 1.6s linear infinite;
+}
+
+@keyframes newPiece {
+	0% {
+		opacity: 0.5;
+	}
+
+	35% {
+		opacity: 1;
+	}
+
+	70% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0.5;
+	}
+}
+
+.card__content {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -149,7 +230,7 @@ canvas {
 }
 
 .card__img {
-	max-height: 10rem;
+	height: 12rem;
 	width: 100%;
 	object-fit: cover;
 	border-radius: var(--rad);
@@ -183,6 +264,10 @@ canvas {
 	.card {
 		width: calc(50% - var(--gap)/2);
 	}
+
+	.card__content {
+		min-height: 45rem;
+	}
 }
 
 @media screen and (min-width: 800px) {
@@ -212,10 +297,6 @@ canvas {
 		width: calc(50% - var(--gap)/2);
 
 	}
-
-	.content {
-		min-height: 41rem;
-	}
 }
 
 @media screen and (min-width: 1000px) {
@@ -224,7 +305,7 @@ canvas {
 		gap: var(--gap);
 	}
 
-	.details div {
+	.details details {
 		width: calc(50% - var(--gap)/2);
 	}
 }

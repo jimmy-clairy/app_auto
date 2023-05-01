@@ -1,11 +1,11 @@
-import { postAvis } from "./js/avis.js"
-import { chartAvis, chartFree } from "./js/chart.js"
+// import { postAvis } from "./js/avis.js"
 import { Card } from "./js/createCard.js"
 
 let pieces = window.localStorage.getItem("Les bonnes Piéces - Pieces")
 if (pieces === null) {
-    const response = await fetch("http://localhost:8081/pieces")
-    pieces = await response.json()
+    const res = await fetch("db.json")
+    let data = await res.json()
+    pieces = data.pieces
     localStorage.setItem("Les bonnes Piéces - Pieces", JSON.stringify(pieces))
     console.log("appel Api")
 } else { pieces = JSON.parse(pieces) }
@@ -17,12 +17,36 @@ function showCard(pieces) {
     for (const piece of pieces) {
         cards.appendChild(new Card(piece))
     }
-}
 
+    const btns = cards.querySelectorAll(".card__btn")
+
+    btns.forEach(btn => btn.addEventListener("click", async () => {
+        const id = Number(btn.dataset.id)
+
+        const content = btn.closest(".card")
+
+        const res = await fetch("db.json");
+        const data = await res.json();
+        const avis = data.avis
+
+        if (content.querySelector(".card__avis")) {
+            const avisElement = content.querySelector(".card__avis")
+            avisElement.remove()
+        } else {
+            const avisElement = document.createElement("p")
+            avisElement.setAttribute("class", "card__avis")
+            for (const avi of avis) {
+                if (avi.pieceId === id) {
+                    avisElement.innerHTML += `<b>${avi.utilisateur}:</b> ${avi.commentaire} <br>`
+                }
+            }
+            content.appendChild(avisElement)
+        }
+    }))
+}
 showCard(pieces)
-postAvis()
-chartAvis()
-chartFree()
+
+// postAvis()
 
 const filterLabel = document.getElementById("rangePrice")
 filterLabel.addEventListener("change", () => {
@@ -33,7 +57,7 @@ filterLabel.addEventListener("change", () => {
 
 // Card pieces abordables
 const piecesLowCost = pieces.filter((piece) => piece.prix <= 35)
-const cardLowCost = fiches.querySelector(".abordables")
+const cardLowCost = document.getElementById("abordables")
 for (const piece of piecesLowCost) {
     const li = document.createElement("li")
     li.innerText = `${piece.nom}`
@@ -41,7 +65,7 @@ for (const piece of piecesLowCost) {
 }
 // Card pieces disponible
 const piecesFree = pieces.filter((piece) => piece.disponibilite)
-const cardFree = fiches.querySelector(".dispo")
+const cardFree = document.getElementById("dispo")
 for (const piece of piecesFree) {
     const li = document.createElement("li")
     li.innerText = `${piece.nom} - ${piece.prix}€`
@@ -84,5 +108,5 @@ const btnUpdate = document.querySelector(".filtres .btn-maj")
 btnUpdate.addEventListener("click", () => localStorage.removeItem("Les bonnes Piéces - Pieces"))
 
 // Modifie le nombre input.max selon le nombre de pieces
-const inputIdPiece = document.getElementById('pieceId')
+const inputIdPiece = document.getElementById("pieceId")
 inputIdPiece.max = pieces.length

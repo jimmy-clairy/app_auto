@@ -6,8 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pieces Auto</title>
 	<link rel="stylesheet" href="styles.css">
-	<script type="module" src="app.js"></script>
-	<script src="node_modules/chart.js/dist/chart.umd.js" defer></script>
+	<script type="module" src="app.js" defer></script>
 </head>
 
 <body>
@@ -18,61 +17,76 @@
 	<main>
 		<!-- Menu de recherche -->
 		<section class="filtres border">
-			<h3>Filtres</h3>
-			<div class="wrapper">
-				<button class="btn border btn-try">Trier par prix croissants</button>
-				<button class="btn border btn-detry">Trier par prix décroissants</button>
-				<button class="btn border btn-filter">Filtrer les pièces abordables</button>
-				<button class="btn border btn-filter-desc">Filtrer les pièces avec une description</button>
-				<button class="btn border btn-filter-dispo">Filtrer les pièces avec une disponible</button>
-				<label for="rangePrice">
-					<p class="font-bold">Prix</p>
-					0<input type="range" name="price" id="rangePrice" min="0" max="60" step="5">60
-				</label>
-			</div>
-			<form class="formulaire-avis">
-				<h3>Formulaire avis</h3>
-				<label for="pieceId">
-					Identifiant de la pièce :<br>
-					<input type="number" name="pieceId" id="pieceId" required min="1" max="5">
-				</label>
-				<label for="utilisateur">
-					Nom d'utilisateur :<br>
-					<input type="text" name="utilisateur" id="utilisateur" required>
-				</label>
-				<label for="commentaire">
-					Avis :<br>
-					<input type="text" name="commentaire" id="commentaire" required>
-				</label>
-				<label for="nbEtoiles">
-					Nombre d'étoiles :<br>
-					<input type="number" name="nbEtoiles" id="nbEtoiles" required min="1" max="5">
-				</label>
-				<button class="btn border">Envoyer</button>
-			</form>
-			<h3>Données</h3>
-			<button class="btn border btn-maj">Mettre à jour les pièces</button>
-			<div class="graphiques">
-				<div class="graph">
-					<h3>Aperçu des avis</h3>
-					<canvas id="graphique-avis" width="150" height="150"></canvas>
+			<details>
+				<summary>Filtres</summary>
+				<div class="wrapper">
+					<button class="btn border btn-try">Trier par prix croissants</button>
+					<button class="btn border btn-detry">Trier par prix décroissants</button>
+					<button class="btn border btn-filter">Filtrer les pièces abordables</button>
+					<button class="btn border btn-filter-desc">Filtrer les pièces avec une description</button>
+					<button class="btn border btn-filter-dispo">Filtrer les pièces avec une disponible</button>
+					<label for="rangePrice">
+						<p class="font-bold">Prix</p>
+						<div class="range">
+							5<input type="range" name="price" id="rangePrice" min="5" max="200" step="5">200
+						</div>
+						<p class="font-bold">Value: <output id="rangePricevalue" style="color:red"></output></p>
+					</label>
 				</div>
-				<div class="graph">
-					<h3>Aperçu des pieces disponible</h3>
-					<canvas id="graphique-dispo" width="150" height="150"></canvas>
+			</details>
+			<details>
+				<summary>Données</summary>
+				<div class="graphiques">
+					<div class="graph">
+						<h3>Aperçu des avis</h3>
+						<div>
+							<canvas id="graphique-avis" width="150" height="150"></canvas>
+						</div>
+					</div>
+					<div class="graph">
+						<h3>Aperçu des pieces disponible</h3>
+						<div>
+							<canvas id="graphique-dispo" width="150" height="150"></canvas>
+						</div>
+					</div>
 				</div>
-			</div>
+				<button class="btn border btn-maj">Mettre à jour les pièces</button>
+			</details>
+			<details>
+				<summary>Formulaire avis</summary>
+				<form class="formulaire-avis">
+					<label for="pieceId">
+						Identifiant de la pièce :<br>
+						<input type="number" name="pieceId" id="pieceId" required min="1" max="5">
+					</label>
+					<label for="utilisateur">
+						Nom d'utilisateur :<br>
+						<input type="text" name="utilisateur" id="utilisateur" required>
+					</label>
+					<label for="commentaire">
+						Avis :<br>
+						<input type="text" name="commentaire" id="commentaire" required>
+					</label>
+					<label for="nbEtoiles">
+						Nombre d'étoiles :<br>
+						<input type="number" name="nbEtoiles" id="nbEtoiles" required min="1" max="5">
+					</label>
+					<button class="btn border">Envoyer</button>
+				</form>
+			</details>
 		</section>
 
 		<!-- Fiches produits -->
 		<section class="fiches">
 			<div class="details">
-				<div class="abordables">
-					<h4>Pièces abordables :</h4>
-				</div>
-				<div class="dispo">
-					<h4>Pièces disponible :</h4>
-				</div>
+				<details>
+					<summary>Pièces abordables</summary>
+					<div id="abordables"></div>
+				</details>
+				<details>
+					<summary>Pièces disponible</summary>
+					<div id="dispo"></div>
+				</details>
 			</div>
 
 			<div class="cards"></div>
@@ -83,6 +97,89 @@
 		<img src="images/car.jpg" alt="LOGO">
 		<h1>Pieces Auto</h1>
 	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
+	<script>
+
+		const value = document.querySelector("#rangePricevalue")
+		const input = document.querySelector("#rangePrice")
+		value.textContent = input.value
+		input.addEventListener("input", (event) => {
+			value.textContent = event.target.value
+		})
+
+		async function chart1() {
+			const dataFetch0 = await fetch("db.json").then(res => res.json())
+
+			const nbCommentaires = [0, 0, 0, 0, 0]
+
+			for (let commentaire of dataFetch0.avis) {
+				nbCommentaires[commentaire.nbEtoiles - 1]++
+			}
+
+			const ctx = document.getElementById("graphique-avis");
+			new Chart(ctx, {
+				type: "bar",
+				data: {
+					labels: ["5", "4", "3", "2", "1"],
+					datasets: [{
+						label: "Étoiles attribuées",
+						data: nbCommentaires.reverse(),
+						backgroundColor: [
+							"rgba(255, 99, 132, 0.3)",
+							"rgba(255, 159, 64, 0.3)",
+							"rgba(75, 192, 192, 0.3)",
+							"rgba(54, 162, 235, 0.3)",
+							"rgba(153, 102, 255, 0.3)"
+						],
+						borderColor: [
+							"rgb(255, 99, 132)",
+							"rgb(255, 159, 64)",
+							"rgb(75, 192, 192)",
+							"rgb(54, 162, 235)",
+							"rgb(153, 102, 255)",
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					indexAxis: "y",
+				}
+			});
+		}
+		chart1()
+
+		async function chart2() {
+			const dataFetch1 = await fetch("db.json").then(res => res.json())
+			const nb_piecesDispo = [0, 0]
+			for (let piece of dataFetch1.pieces) {
+				piece.disponibilite ? nb_piecesDispo[0]++ : nb_piecesDispo[1]++
+			}
+
+			const ctx = document.getElementById("graphique-dispo");
+
+			new Chart(ctx, {
+				type: "bar",
+				data: {
+					labels: ["Disponible", "Non disponible"],
+					datasets: [{
+						label: "Pieces disponible",
+						data: nb_piecesDispo,
+						backgroundColor: [
+							"rgba(75, 192, 192, 0.3)",
+							"rgba(54, 162, 235, 0.3)"
+						],
+						borderColor: [
+							"rgb(75, 192, 192)",
+							"rgb(54, 162, 235)"
+						],
+						borderWidth: 1
+					}]
+				}
+			});
+		}
+		chart2()
+
+	</script>
 </body>
 
 </html>
