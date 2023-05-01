@@ -1,4 +1,4 @@
-// import { postAvis } from "./js/avis.js"
+import { postAvis } from "./js/avis.js"
 import { Card } from "./js/createCard.js"
 
 let pieces = window.localStorage.getItem("Les bonnes Piéces - Pieces")
@@ -46,7 +46,7 @@ function showCard(pieces) {
 }
 showCard(pieces)
 
-// postAvis()
+postAvis()
 
 const filterLabel = document.getElementById("rangePrice")
 filterLabel.addEventListener("change", () => {

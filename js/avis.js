@@ -1,8 +1,8 @@
-
 export function postAvis() {
     const formulaireAvis = document.querySelector(".formulaire-avis")
     formulaireAvis.addEventListener("submit", function (event) {
         event.preventDefault()
+        formulaireAvis.reset()
         // const avis = {
         //     pieceId: Number(formulaireAvis.pieceId.value),
         //     utilisateur: formulaireAvis.utilisateur.value,
