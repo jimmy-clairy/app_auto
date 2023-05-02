@@ -1,0 +1,23 @@
+.animatedALerte {
+    background-color: $cl-primary;
+    color: #fff;
+    animation: alert 1.6s linear infinite;
+}
+
+@keyframes alert {
+    0% {
+        opacity: 0.5;
+    }
+
+    35% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}

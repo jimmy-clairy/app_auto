@@ -11,14 +11,14 @@ export class Card {
     * @returns {HTMLElement}
     */
     constructor(piece) {
-        console.log(piece);
+        // console.log(piece);
         const card = document.createElement("div")
         card.setAttribute("class", "card")
         card.setAttribute("data-id", piece.id)
 
         const newPiece = document.createElement("div")
         if (piece.newPiece) {
-            newPiece.setAttribute("class", "newPiece")
+            newPiece.setAttribute("class", "card__new animatedALerte")
             newPiece.innerText = "Nouveau"
         }
 
@@ -28,6 +28,7 @@ export class Card {
         const img = document.createElement("img")
         img.setAttribute("class", "card__img")
         img.src = piece.image
+        img.alt = piece.nom
 
         const title = document.createElement("h3")
         title.innerText = piece.nom
@@ -37,7 +38,7 @@ export class Card {
         idPiece.innerText = `Identifiant : ${piece.id}`
 
         const price = document.createElement("p")
-        price.innerText = `Prix: ${piece.prix} € (${piece.prix < 35 ? "€" : "€€€"})`
+        price.innerText = `Prix: ${piece.prix} €`
 
         const categorie = document.createElement("p")
         categorie.innerText = piece.categorie ?? "(aucune catégorie)"
@@ -50,7 +51,6 @@ export class Card {
         disponible.innerText = piece.disponibilite ? "En stock" : "Rupture"
 
         const btnAvis = document.createElement("button")
-        btnAvis.setAttribute("data-id", piece.id)
         btnAvis.setAttribute("class", "card__btn btn border")
         btnAvis.innerHTML = "Afficher les avis"
 

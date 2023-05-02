@@ -1,0 +1,83 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+    width: $width;
+    max-width: $max-width;
+    margin: auto;
+    padding: 2rem 0;
+
+    @include tablette {
+        flex-direction: row;
+    }
+}
+
+.filtres {
+    padding: 1rem 1rem 0;
+
+    @include tablette {
+        width: 28rem;
+    }
+}
+
+summary {
+    text-align: left;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 1rem;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $cl-hover;
+    border-radius: $rad;
+    margin-bottom: 1rem;
+}
+
+summary::after {
+    content: "🛆";
+    display: inline-block;
+    transition: 0.3s ease-out;
+}
+
+details[open] summary::after {
+    transform: rotate(-180deg);
+}
+
+.filtres .btn {
+    margin-bottom: 1.5rem;
+}
+
+.filtres .range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtres .rangePricevalue {
+    // color: $cl-primary;
+    font-size: 1.8rem;
+}
+
+.filtres input[type="range"] {
+    background: $cl-hover;
+    border: solid 1px $cl-primary;
+    border-radius: 10px;
+    height: .8rem;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+
+.filtres input[type='range']::-webkit-slider-thumb {
+    width: 1.5rem;
+    -webkit-appearance: none;
+    height: 1.5rem;
+    background: $cl-primary;
+    border-radius: 50%;
+}
+
+canvas {
+    max-height: 25rem;
+}

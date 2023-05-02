@@ -1,0 +1,50 @@
+.header {
+    padding: 1rem 0 0 0;
+    background: rgb(255, 0, 8);
+    background: $gradient;
+    color: white;
+    position: sticky;
+    top: -135px;
+    z-index: 5;
+
+    @include tablette {
+        padding: 1rem 0;
+        position: static;
+    }
+
+    .container {
+        margin: auto;
+        width: $width;
+        max-width: $max-width;
+
+        @include tablette {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__img {
+        height: 12rem;
+        border-radius: $rad;
+
+        @include tablette {
+            height: 8rem;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: space-between;
+        height: 8rem;
+    }
+
+    &__heading {
+        flex: 1;
+        font-family: Courgette, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 3.8rem;
+        margin: 0
+    }
+}

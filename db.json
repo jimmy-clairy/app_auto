@@ -2,21 +2,21 @@
   "pieces": [
     {
       "id": 1,
-      "nom": "Ampoule boîte à gants",
-      "prix": 5,
-      "categorie": "Freinage",
-      "image": "https://m.media-amazon.com/images/I/51cQ3-tkJ6L._AC_SY450_.jpg",
-      "description": "Pour y voir clair dans l’habitacle",
-      "disponibilite": true,
-      "newPiece": true
-    },
-    {
-      "id": 2,
       "nom": "Plaquettes de frein (x4)",
       "prix": 40,
       "categorie": "Freinage",
       "image": "images/brake.jpg",
       "description": "Une qualité de freinage optimale, par tous les temps",
+      "disponibilite": true,
+      "newPiece": true
+    },
+    {
+      "id": 2,
+      "nom": "Ampoule boîte à gants",
+      "prix": 5,
+      "categorie": "Éclairage",
+      "image": "https://m.media-amazon.com/images/I/51cQ3-tkJ6L._AC_SY450_.jpg",
+      "description": "Pour y voir clair dans l’habitacle",
       "disponibilite": true
     },
     {
@@ -44,17 +44,17 @@
       "prix": 29.1,
       "image": "images/cleanGlasse.jpg",
       "description": "Performances d’essuyage au Top ! Longueur : 550 mm",
-      "disponibilite": true,
-      "newPiece": true
+      "disponibilite": true
     },
     {
       "id": 6,
-      "nom": "Ferrari",
+      "nom": "Jantes",
       "prix": 50,
       "categorie": "Jantes",
       "image": "images/wheel800.jpg",
       "description": "Une qualité optimale",
-      "disponibilite": false
+      "disponibilite": false,
+      "newPiece": true
     },
     {
       "id": 7,
@@ -97,15 +97,6 @@
     },
     {
       "id": 11,
-      "nom": "Rotule de direction",
-      "prix": 30,
-      "categorie": "Direction",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFE2AECv4_9dqXtvIkCtTnwcc9sdg30YBrm25jMJtM5xmyn3hkolWWyFpvNMXP1G98bho&usqp=CAU",
-      "description": "Une rotule de direction de qualité pour une meilleure tenue de route",
-      "disponibilite": true
-    },
-    {
-      "id": 12,
       "nom": "Batterie",
       "prix": 100,
       "categorie": "Electrique",
@@ -114,7 +105,7 @@
       "disponibilite": true
     },
     {
-      "id": 13,
+      "id": 12,
       "nom": "Alternateur",
       "prix": 120,
       "categorie": "Electrique",
@@ -124,7 +115,7 @@
       "newPiece": true
     },
     {
-      "id": 14,
+      "id": 13,
       "nom": "Courroie de distribution",
       "prix": 50,
       "categorie": "Distribution",
@@ -157,7 +148,7 @@
     },
     {
       "id": 4,
-      "pieceId": 14,
+      "pieceId": 12,
       "utilisateur": "Pierre Lefebvre",
       "commentaire": "J'ai eu un petit souci avec la pièce mais le service client a été très réactif",
       "nbEtoiles": 3
@@ -378,6 +369,34 @@
       "utilisateur": "Michel Leroy",
       "commentaire": "La livraison a été rapide et la pièce était en bon état",
       "nbEtoiles": 4
+    },
+    {
+      "utilisateur": "Sophie Lecomte",
+      "commentaire": "La pièce est facile à installer et fonctionne bien",
+      "nbEtoiles": 4,
+      "id": 36,
+      "pieceId": 13
+    },
+    {
+      "utilisateur": "Hugo Boulanger",
+      "commentaire": "La pièce ne fonctionnait pas, j'ai dû la renvoyer",
+      "nbEtoiles": 1,
+      "id": 37,
+      "pieceId": 11
+    },
+    {
+      "utilisateur": "Clémence Rousseau",
+      "commentaire": "Je suis satisfaite de la qualité de la pièce, elle est conforme à mes attentes",
+      "nbEtoiles": 5,
+      "id": 38,
+      "pieceId": 3
+    },
+    {
+      "utilisateur": "Arthur Girard",
+      "commentaire": "La livraison a été rapide, mais la pièce était abîmée",
+      "nbEtoiles": 3,
+      "id": 39,
+      "pieceId": 8
     }
   ]
 }

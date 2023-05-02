@@ -1,5 +1,5 @@
 export function postAvis() {
-    const formulaireAvis = document.querySelector(".formulaire-avis")
+    const formulaireAvis = document.querySelector(".form")
     formulaireAvis.addEventListener("submit", function (event) {
         event.preventDefault()
         formulaireAvis.reset()

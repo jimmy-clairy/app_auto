@@ -5,48 +5,58 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pieces Auto</title>
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="./css/style.css">
 	<script type="module" src="app.js" defer></script>
+	<meta name="description" content="Application de pieces auto">
 </head>
 
 <body>
-	<header>
-		<img src="images/car.jpg" alt="LOGO">
-		<h1>Pieces Auto</h1>
+	<header class="header">
+		<div class="container">
+			<img class="header__img" src="images/car.jpg" alt="LOGO">
+			<div class="header__wrapper">
+				<h1 class="header__heading">Pieces Auto</h1>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+					<path
+						d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+				</svg>
+			</div>
+		</div>
 	</header>
 	<main>
 		<!-- Menu de recherche -->
 		<section class="filtres border">
-			<details>
-				<summary>Filtres</summary>
+			<div>
+				<h2>Filtres</h2>
 				<div class="wrapper">
 					<button class="btn border btn-try">Trier par prix croissants</button>
 					<button class="btn border btn-detry">Trier par prix décroissants</button>
-					<button class="btn border btn-filter">Filtrer les pièces abordables</button>
-					<button class="btn border btn-filter-desc">Filtrer les pièces avec une description</button>
-					<button class="btn border btn-filter-dispo">Filtrer les pièces avec une disponible</button>
+					<button class="btn border btn-dispo">Filtrer les pièces disponible</button>
+					<button class="btn border btn-new">Filtrer les pièces nouvelles</button>
 					<label for="rangePrice">
 						<p class="font-bold">Prix</p>
-						<div class="range">
-							5<input type="range" name="price" id="rangePrice" min="5" max="200" step="5">200
+						<div class="rangePrice">
+							<span class="rangePrice__min">5 </span>
+							<input type="range" name="price" id="rangePrice" min="5" max="200" step="5" value="200">
+							<span class="rangePrice__max"> 200</span>
 						</div>
-						<p class="font-bold">Value: <output id="rangePricevalue" style="color:red"></output></p>
+						<p class="font-bold">Value: <output class="rangePricevalue" id="rangePricevalue"></output></p>
 					</label>
 				</div>
-			</details>
+			</div>
 			<details>
 				<summary>Données</summary>
-				<div class="graphiques">
+				<div class="graphs">
 					<div class="graph">
-						<h3>Aperçu des avis</h3>
+						<h2>Aperçu des avis</h2>
 						<div>
-							<canvas id="graphique-avis" width="150" height="150"></canvas>
+							<canvas id="graph-avis" width="150" height="150"></canvas>
 						</div>
 					</div>
 					<div class="graph">
-						<h3>Aperçu des pieces disponible</h3>
+						<h2>Aperçu des pieces disponible</h2>
 						<div>
-							<canvas id="graphique-dispo" width="150" height="150"></canvas>
+							<canvas id="graph-dispo" width="150" height="150"></canvas>
 						</div>
 					</div>
 				</div>
@@ -54,59 +64,42 @@
 			</details>
 			<details>
 				<summary>Formulaire avis</summary>
-				<form class="formulaire-avis">
-					<label for="pieceId">
+				<form class="form">
+					<div class="form__alert animatedALerte">Ce formulaire n'est pas fonctionnel non connecté à une base
+						de données</div>
+					<label for="form__pieceId">
 						Identifiant de la pièce :<br>
-						<input type="number" name="pieceId" id="pieceId" required min="1" max="5">
+						<input type="number" name="form__pieceId" id="form__pieceId" required min="1" max="5">
 					</label>
-					<label for="utilisateur">
+					<label for="form__user">
 						Nom d'utilisateur :<br>
-						<input type="text" name="utilisateur" id="utilisateur" required>
+						<input type="text" name="form__user" id="form__user" required>
 					</label>
-					<label for="commentaire">
+					<label for="form__comment">
 						Avis :<br>
-						<input type="text" name="commentaire" id="commentaire" required>
+						<input type="text" name="form__comment" id="form__comment" required>
 					</label>
-					<label for="nbEtoiles">
+					<label for="form__nbStar">
 						Nombre d'étoiles :<br>
-						<input type="number" name="nbEtoiles" id="nbEtoiles" required min="1" max="5">
+						<input type="number" name="form__nbStar" id="form__nbStar" required min="1" max="5">
 					</label>
 					<button class="btn border">Envoyer</button>
 				</form>
 			</details>
 		</section>
 
-		<!-- Fiches produits -->
-		<section class="fiches">
-			<div class="details">
-				<details>
-					<summary>Pièces abordables</summary>
-					<div id="abordables"></div>
-				</details>
-				<details>
-					<summary>Pièces disponible</summary>
-					<div id="dispo"></div>
-				</details>
-			</div>
+		<!-- Cards produits -->
+		<section class="cards"></section>
 
-			<div class="cards"></div>
-
-		</section>
 	</main>
-	<footer>
-		<img src="images/car.jpg" alt="LOGO">
-		<h1>Pieces Auto</h1>
+	<footer class="footer">
+		<div class="container">
+			<img class="footer__img" src="images/car.jpg" alt="LOGO">
+			<h1 class="footer__heading">Pieces Auto</h1>
+		</div>
 	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
 	<script>
-
-		const value = document.querySelector("#rangePricevalue")
-		const input = document.querySelector("#rangePrice")
-		value.textContent = input.value
-		input.addEventListener("input", (event) => {
-			value.textContent = event.target.value
-		})
-
 		async function chart1() {
 			const dataFetch0 = await fetch("db.json").then(res => res.json())
 
@@ -116,7 +109,7 @@
 				nbCommentaires[commentaire.nbEtoiles - 1]++
 			}
 
-			const ctx = document.getElementById("graphique-avis");
+			const ctx = document.getElementById("graph-avis");
 			new Chart(ctx, {
 				type: "bar",
 				data: {
@@ -125,18 +118,18 @@
 						label: "Étoiles attribuées",
 						data: nbCommentaires.reverse(),
 						backgroundColor: [
-							"rgba(255, 99, 132, 0.3)",
-							"rgba(255, 159, 64, 0.3)",
-							"rgba(75, 192, 192, 0.3)",
-							"rgba(54, 162, 235, 0.3)",
-							"rgba(153, 102, 255, 0.3)"
+							"#ff2a2a33",
+							"#00000033",
+							"#d4af3733",
+							"#c0c0c033",
+							" #b8733333"
 						],
 						borderColor: [
-							"rgb(255, 99, 132)",
-							"rgb(255, 159, 64)",
-							"rgb(75, 192, 192)",
-							"rgb(54, 162, 235)",
-							"rgb(153, 102, 255)",
+							"#ff2a2a",
+							"#000",
+							"#d4af37",
+							"#c0c0c0",
+							" #b87333",
 						],
 						borderWidth: 1
 					}]
@@ -155,7 +148,7 @@
 				piece.disponibilite ? nb_piecesDispo[0]++ : nb_piecesDispo[1]++
 			}
 
-			const ctx = document.getElementById("graphique-dispo");
+			const ctx = document.getElementById("graph-dispo");
 
 			new Chart(ctx, {
 				type: "bar",
@@ -165,12 +158,12 @@
 						label: "Pieces disponible",
 						data: nb_piecesDispo,
 						backgroundColor: [
-							"rgba(75, 192, 192, 0.3)",
-							"rgba(54, 162, 235, 0.3)"
+							"#ff2a2a33",
+							"#00000033"
 						],
 						borderColor: [
-							"rgb(75, 192, 192)",
-							"rgb(54, 162, 235)"
+							"#ff2a2a",
+							"#000"
 						],
 						borderWidth: 1
 					}]

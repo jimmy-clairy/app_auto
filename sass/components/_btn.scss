@@ -1,0 +1,12 @@
+.btn {
+    border: none;
+    width: 100%;
+    padding: .5rem;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: .3s;
+
+    &:hover {
+        background-color: $cl-hover;
+    }
+}

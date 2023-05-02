@@ -1,0 +1,28 @@
+.footer {
+    padding: 1rem 0;
+    background: rgb(255, 0, 8);
+    background: $gradient;
+    color: white;
+
+    .container {
+        margin: auto;
+        width: $width;
+        max-width: $max-width;
+
+        @include tablette {
+            display: flex;
+        }
+    }
+
+    &__img {
+        height: 12rem;
+        border-radius: $rad;
+    }
+
+    &__heading {
+        flex: 1;
+        font-family: Courgette, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 4rem;
+        margin-bottom: 1.2rem;
+    }
+}
