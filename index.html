@@ -6,24 +6,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pieces Auto</title>
 	<link rel="stylesheet" href="./css/style.css">
-	<script type="module" src="app.js" defer></script>
+	<script type="module" src="./js/index.js" defer></script>
 	<meta name="description" content="Application de pieces auto">
+	<link rel="icon" type="image/webp" href="./assets/icon/iconj.webp" />
 </head>
 
 <body>
 	<header class="header">
 		<div class="container">
-			<img class="header__img" src="images/car.jpg" alt="LOGO">
+			<a href="#"><img class="header__img" src="assets/icon/carLogo.webp" width="500" height="250" alt="LOGO"></a>
 			<div class="header__wrapper">
-				<h1 class="header__heading">Pieces Auto</h1>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-					<path
-						d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
-				</svg>
+				<h1 class="header__heading"><a href="#">Pieces Auto</a></h1>
+				<a href="./html/cart.html" aria-label="Logo panier">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+						<path
+							d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
+					</svg>
+				</a>
+
 			</div>
 		</div>
 	</header>
-	<main>
+	<main class="main__home">
 		<!-- Menu de recherche -->
 		<section class="filtres border">
 			<div>
@@ -50,13 +54,13 @@
 					<div class="graph">
 						<h2>Aperçu des avis</h2>
 						<div>
-							<canvas id="graph-avis" width="150" height="150"></canvas>
+							<canvas id="graph-avis" height="250"></canvas>
 						</div>
 					</div>
 					<div class="graph">
 						<h2>Aperçu des pieces disponible</h2>
 						<div>
-							<canvas id="graph-dispo" width="150" height="150"></canvas>
+							<canvas id="graph-dispo" height="250"></canvas>
 						</div>
 					</div>
 				</div>
@@ -94,7 +98,7 @@
 	</main>
 	<footer class="footer">
 		<div class="container">
-			<img class="footer__img" src="images/car.jpg" alt="LOGO">
+			<img class="footer__img" src="assets/icon/carLogo.webp" width="500" height="250" alt="LOGO">
 			<h1 class="footer__heading">Pieces Auto</h1>
 		</div>
 	</footer>

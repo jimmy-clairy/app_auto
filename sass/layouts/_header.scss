@@ -26,6 +26,8 @@
 
     &__img {
         height: 12rem;
+        width: 24rem;
+        object-fit: cover;
         border-radius: $rad;
 
         @include tablette {

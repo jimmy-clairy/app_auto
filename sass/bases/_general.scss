@@ -13,21 +13,48 @@ html {
 body {
     font-family: sans-serif;
     font-size: 1.6em;
+    color: $cl-font;
     text-align: center;
     margin: 0;
 }
 
+main {
+    width: $width;
+    max-width: $max-width;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 h2 {
     font-size: 2.2rem;
+    margin: 2rem 0;
 }
 
 .font-bold {
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .border {
     box-shadow: $shadow;
     border-radius: $rad;
+}
+
+.stock,
+.rupture {
+    padding: 0.5rem;
+    border-radius: $rad;
+}
+
+.stock {
+    background-color: lightgreen;
+}
+
+.rupture {
+    background-color: $cl-primary;
 }
 
 svg {

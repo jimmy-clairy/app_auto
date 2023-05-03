@@ -1,6 +1,6 @@
-import { postAvis } from "./js/avis.js"
-import { Card } from "./js/createCard.js"
-import { prixMax } from "./js/function.js"
+import { postAvis } from "./avis.js"
+import { Card } from "./Card.js"
+import { prixMax } from "./function.js"
 
 let pieces = window.localStorage.getItem("Les bonnes Piéces - Pieces")
 if (pieces === null) {
@@ -19,62 +19,65 @@ function showCard(pieces) {
         cards.appendChild(new Card(piece))
     }
 
-    const btns = cards.querySelectorAll(".card__btn")
 
-    btns.forEach(btn => btn.addEventListener("click", async () => {
-        const card = btn.closest(".card")
-        const id = Number(card.dataset.id)
-
-        const res = await fetch("db.json");
-        const data = await res.json();
-        const avis = data.avis
-
-        if (card.querySelector(".card__avis")) {
-            const avisElement = card.querySelector(".card__avis")
-            avisElement.remove()
-        } else {
-            const avisElement = document.createElement("p")
-            avisElement.setAttribute("class", "card__avis")
-
-            // Affiche les 3 dernier avis
-            const maxAvis = 3
-            let nbAvis = 0
-            for (const avi of avis) {
-                if (avi.pieceId === id) {
-                    if (nbAvis === maxAvis) {
-                        return card.appendChild(avisElement)
-                    }
-                    let nbEtoiles = ""
-                    console.log(avi.nbEtoiles);
-                    switch (avi.nbEtoiles) {
-                        case 1:
-                            nbEtoiles = "⭐"
-                            break;
-                        case 2:
-                            nbEtoiles = "⭐⭐"
-                            break;
-                        case 3:
-                            nbEtoiles = "⭐⭐⭐"
-                            break;
-                        case 4:
-                            nbEtoiles = "⭐⭐⭐⭐"
-                            break;
-                        case 5:
-                            nbEtoiles = "⭐⭐⭐⭐⭐"
-                            break;
-
-                        default:
-                            break;
-                    }
-                    avisElement.innerHTML += `${nbEtoiles}<br> <b>${avi.utilisateur}:</b> ${avi.commentaire} <br><br>`
-                    nbAvis++
-                }
-            }
-            card.appendChild(avisElement)
-        }
-    }))
 }
 showCard(pieces)
+
+const btns = cards.querySelectorAll(".card__btn")
+btns.forEach(btn => btn.addEventListener("click", async (e) => {
+    e.preventDefault()
+    const card = btn.closest(".card")
+    const id = Number(card.dataset.id)
+
+    const res = await fetch("db.json");
+    const data = await res.json();
+    // Reverse le tabeleau pour avoir les derniers commentaires
+    const avis = data.avis.reverse()
+
+    if (card.querySelector(".card__avis")) {
+        const avisElement = card.querySelector(".card__avis")
+        avisElement.remove()
+    } else {
+        const avisElement = document.createElement("p")
+        avisElement.setAttribute("class", "card__avis")
+
+        // Affiche les 3 dernier avis
+        const maxAvis = 3
+        let nbAvis = 0
+        for (const avi of avis) {
+            if (avi.pieceId === id) {
+                if (nbAvis === maxAvis) {
+                    return card.appendChild(avisElement)
+                }
+                let nbEtoiles = ""
+                console.log(avi.nbEtoiles);
+                switch (avi.nbEtoiles) {
+                    case 1:
+                        nbEtoiles = "⭐"
+                        break;
+                    case 2:
+                        nbEtoiles = "⭐⭐"
+                        break;
+                    case 3:
+                        nbEtoiles = "⭐⭐⭐"
+                        break;
+                    case 4:
+                        nbEtoiles = "⭐⭐⭐⭐"
+                        break;
+                    case 5:
+                        nbEtoiles = "⭐⭐⭐⭐⭐"
+                        break;
+
+                    default:
+                        break;
+                }
+                avisElement.innerHTML += `${nbEtoiles}<br> <b>${avi.utilisateur}:</b> ${avi.commentaire} <br><br>`
+                nbAvis++
+            }
+        }
+        card.appendChild(avisElement)
+    }
+}))
 
 postAvis()
 

@@ -12,9 +12,10 @@ export class Card {
     */
     constructor(piece) {
         // console.log(piece);
-        const card = document.createElement("div")
+        const card = document.createElement("a")
         card.setAttribute("class", "card")
         card.setAttribute("data-id", piece.id)
+        card.href = `./html/product.html?id=${piece.id}`
 
         const newPiece = document.createElement("div")
         if (piece.newPiece) {
@@ -29,15 +30,17 @@ export class Card {
         img.setAttribute("class", "card__img")
         img.src = piece.image
         img.alt = piece.nom
+        img.width = 700
+        img.height = 400
 
         const title = document.createElement("h3")
         title.innerText = piece.nom
 
         const idPiece = document.createElement("p")
-        idPiece.setAttribute("class", "font-bold")
         idPiece.innerText = `Identifiant : ${piece.id}`
 
         const price = document.createElement("p")
+        price.setAttribute("class", "font-bold")
         price.innerText = `Prix: ${piece.prix} €`
 
         const categorie = document.createElement("p")
@@ -49,10 +52,17 @@ export class Card {
         const disponible = document.createElement("p")
         disponible.setAttribute("class", "font-bold")
         disponible.innerText = piece.disponibilite ? "En stock" : "Rupture"
+        if (piece.disponibilite) {
+            disponible.classList.add('stock')
+            disponible.classList.remove('rupture')
+        } else {
+            disponible.classList.remove('stock')
+            disponible.classList.add('rupture')
+        }
 
         const btnAvis = document.createElement("button")
         btnAvis.setAttribute("class", "card__btn btn border")
-        btnAvis.innerHTML = "Afficher les avis"
+        btnAvis.innerHTML = "Afficher les 3 derniers avis"
 
         card.append(newPiece, content)
         content.append(img, title, idPiece, price, categorie, description, disponible, btnAvis)
