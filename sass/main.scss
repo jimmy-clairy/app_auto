@@ -3,14 +3,16 @@
 @import "utils/mixins";
 
 @import "bases/general";
-@import "bases/animated";
+@import "bases/animatedAlerte";
 
 @import "layouts/header";
 @import "layouts/footer";
 
 @import "pages/home";
 @import "pages/product";
+@import "pages/cart";
 
 @import "components/form";
 @import "components/cards";
 @import "components/btn";
+@import "components/modale";

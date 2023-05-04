@@ -15,7 +15,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="../index.html"><img class="header__img" src="../assets/icon/carLogo.webp" alt="LOGO"></a>
+            <a href="../index.html"><img class="header__img" src="../assets/icon/carRed.webp" alt="LOGO"></a>
             <div class="header__wrapper">
                 <h1 class="header__heading"><a href="../index.html">Pieces Auto</a></h1>
                 <a href="./cart.html">
@@ -27,6 +27,13 @@
             </div>
         </div>
     </header>
+    <div class="modal">
+        <div class="modal__wrapper">
+            <p class="modal__p font-bold">Voulez-vous vraiment ajouter cet article ?</p>
+            <button class="btn modal__yes border font-bold">Oui</button>
+            <button class="btn modal__no border font-bold">Non</button>
+        </div>
+    </div>
     <main class="main__product">
         <section class="product">
             <h2 class="product__heading">product</h2>
@@ -55,7 +62,7 @@
     </main>
     <footer class="footer">
         <div class="container">
-            <img class="footer__img" src="../assets/icon/carLogo.webp" alt="LOGO">
+            <img class="footer__img" src="../assets/icon/carRed.webp" alt="LOGO">
             <h1 class="footer__heading">Pieces Auto</h1>
         </div>
     </footer>
@@ -63,8 +70,6 @@
     <script>
         const url = new URL(document.location)
         const id = Number(url.searchParams.get("id"))
-        console.log(id);
-
 
         async function chart1() {
             const ctx = document.getElementById('myChart');

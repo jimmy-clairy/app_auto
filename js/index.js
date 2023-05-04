@@ -29,8 +29,8 @@ btns.forEach(btn => btn.addEventListener("click", async (e) => {
     const card = btn.closest(".card")
     const id = Number(card.dataset.id)
 
-    const res = await fetch("db.json");
-    const data = await res.json();
+    const res = await fetch("db.json")
+    const data = await res.json()
     // Reverse le tabeleau pour avoir les derniers commentaires
     const avis = data.avis.reverse()
 
@@ -50,26 +50,26 @@ btns.forEach(btn => btn.addEventListener("click", async (e) => {
                     return card.appendChild(avisElement)
                 }
                 let nbEtoiles = ""
-                console.log(avi.nbEtoiles);
+                console.log(avi.nbEtoiles)
                 switch (avi.nbEtoiles) {
                     case 1:
                         nbEtoiles = "⭐"
-                        break;
+                        break
                     case 2:
                         nbEtoiles = "⭐⭐"
-                        break;
+                        break
                     case 3:
                         nbEtoiles = "⭐⭐⭐"
-                        break;
+                        break
                     case 4:
                         nbEtoiles = "⭐⭐⭐⭐"
-                        break;
+                        break
                     case 5:
                         nbEtoiles = "⭐⭐⭐⭐⭐"
-                        break;
+                        break
 
                     default:
-                        break;
+                        break
                 }
                 avisElement.innerHTML += `${nbEtoiles}<br> <b>${avi.utilisateur}:</b> ${avi.commentaire} <br><br>`
                 nbAvis++
@@ -113,7 +113,7 @@ btnNew.addEventListener("click", () => {
     showCard(piecesFilter)
 })
 
-// Permet d'ajuster le prix sur le range avec la piece la plus chere
+// Permet d"ajuster le prix sur le range avec la piece la plus chere
 const rangePrice = document.getElementById("rangePrice")
 const rangePriceMax = document.querySelector(".rangePrice__max")
 const value = document.querySelector("#rangePricevalue")

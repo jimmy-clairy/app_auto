@@ -53,11 +53,11 @@ export class Card {
         disponible.setAttribute("class", "font-bold")
         disponible.innerText = piece.disponibilite ? "En stock" : "Rupture"
         if (piece.disponibilite) {
-            disponible.classList.add('stock')
-            disponible.classList.remove('rupture')
+            disponible.classList.add("stock")
+            disponible.classList.remove("rupture")
         } else {
-            disponible.classList.remove('stock')
-            disponible.classList.add('rupture')
+            disponible.classList.remove("stock")
+            disponible.classList.add("rupture")
         }
 
         const btnAvis = document.createElement("button")

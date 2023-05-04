@@ -1,0 +1,47 @@
+.main__cart {
+    min-height: 56vh;
+
+    .cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: $gap;
+    }
+
+    .card {
+        overflow: hidden;
+
+        @include tablette {
+            display: flex;
+            height: 18rem;
+            width: 60rem;
+        }
+
+        &__img {
+            width: 100%;
+            object-fit: cover;
+
+            @include tablette {
+                width: 42%;
+                height: 100%;
+            }
+        }
+
+        &__body {
+            padding: 0 1rem 1rem;
+            flex: 1;
+
+            @include tablette {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 0 2rem 1rem 2rem;
+                text-align: left;
+            }
+        }
+
+        &__quantity {
+            width: 4rem;
+        }
+    }
+}

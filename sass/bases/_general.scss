@@ -24,6 +24,15 @@ main {
     margin: auto;
 }
 
+input,
+textarea,
+button,
+select,
+details,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -50,7 +59,7 @@ h2 {
 }
 
 .stock {
-    background-color: lightgreen;
+    background-color: $cl-accept;
 }
 
 .rupture {
@@ -58,8 +67,8 @@ h2 {
 }
 
 svg {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 3.2rem;
+    height: 3.2rem;
     fill: #fff;
     cursor: pointer;
     margin: 0;

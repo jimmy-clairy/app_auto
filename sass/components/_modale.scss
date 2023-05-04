@@ -1,0 +1,45 @@
+.modal {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba($cl-font, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    &__wrapper {
+        background-color: white;
+        padding: 2rem;
+        width: 90%;
+        max-width: 50rem;
+        border-radius: $rad;
+    }
+
+    & button {
+        padding: 1rem 2rem;
+        margin: 2rem;
+    }
+
+    &__yes {
+        background-color: $cl-accept;
+
+        &:hover {
+            background-color: darken($cl-accept, 20%);
+        }
+    }
+
+    &__no {
+        background-color: $cl-hover;
+
+        &:hover {
+            background-color: darken($cl-hover, 15%);
+        }
+    }
+}
+
+.modal-visible {
+    display: flex;
+}

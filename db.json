@@ -53,7 +53,7 @@
       "categorie": "Jantes",
       "image": "assets/img/wheel.webp",
       "description": "Une qualité optimale",
-      "disponibilite": false,
+      "disponibilite": true,
       "newPiece": true
     },
     {
@@ -83,7 +83,8 @@
       "categorie": "Transmission",
       "image": "assets/img/embrayage.webp",
       "description": "Un kit d'embrayage complet pour une meilleure transmission de la puissance",
-      "disponibilite": false
+      "disponibilite": true,
+      "newPiece": true
     },
     {
       "id": 10,
@@ -111,8 +112,7 @@
       "categorie": "Electrique",
       "image": "assets/img/alternateur.webp",
       "description": "Un alternateur de qualité pour une production d'électricité optimale",
-      "disponibilite": true,
-      "newPiece": true
+      "disponibilite": false
     },
     {
       "id": 13,
@@ -704,7 +704,7 @@
       "pieceId": 3,
       "utilisateur": "Clémence Rousseau",
       "commentaire": "La livraison a été rapide et la pièce fonctionne très bien",
-      "nbEtoiles": 4
+      "nbEtoiles": 3
     },
     {
       "id": 84,

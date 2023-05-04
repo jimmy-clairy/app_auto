@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     gap: $gap;
-    padding: 2rem 0;
 
     @include tablette {
         flex-direction: row;
