@@ -1,9 +1,8 @@
 .footer {
     padding: 1rem 0;
     margin-top: 2rem;
-    background: rgb(255, 0, 8);
     background: $gradient;
-    color: white;
+    color: $cl-white;
 
     .container {
         margin: auto;

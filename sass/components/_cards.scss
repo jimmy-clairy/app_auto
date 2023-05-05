@@ -27,7 +27,7 @@
     }
 
     &__new {
-        color: black;
+        color: $cl-font;
         font-weight: 600;
         position: absolute;
         border-radius: $rad 0 $rad 0;
@@ -63,7 +63,7 @@
 
     &__avis {
         margin-top: 1rem;
-        background-color: rgb(236, 236, 236);
+        background-color: darken($cl-white, 5%);
         border-radius: $rad;
         padding: 1rem 1rem 0rem;
         text-align: left;
