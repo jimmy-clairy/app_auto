@@ -4,22 +4,29 @@ import { addBasket } from "../function.js"
 const url = new URL(document.location)
 const id = Number(url.searchParams.get("id"))
 // console.log(id)
-async function fetchData() {
-    const res = await fetch("../db.json")
+async function fetchPieces() {
+    const res = await fetch("../dataBase/pieces.json")
+    if (res.ok === true) {
+        return await res.json()
+    }
+    throw new Error("Connection impossible server")
+}
+async function fetchAvis() {
+    const res = await fetch("../dataBase/avis.json")
     if (res.ok === true) {
         return await res.json()
     }
     throw new Error("Connection impossible server")
 }
 
-const data = await fetchData()
-const pieces = data.pieces
+const pieces = await fetchPieces()
+
 const foundPiece = pieces.filter(piece => piece.id === id)
 const piece = foundPiece[0]
 
-const Allcomments = data.avis
-const comments = Allcomments.filter(comments => comments.pieceId === id)
-// console.log(comments)
+const allAvis = await fetchAvis()
+const avis = allAvis.filter(a => a.pieceId === id).reverse()
+
 
 const productHeading = document.querySelector(".product__heading")
 productHeading.textContent = piece.nom
@@ -73,8 +80,8 @@ btnNo.addEventListener("click", () => {
     modal.classList.remove("modal-visible")
 })
 
-const prodcutComments = document.querySelector(".product__comments")
-for (const comment of comments) {
+const productComments = document.querySelector(".product__comments")
+for (const comment of avis) {
     let nbEtoiles = ""
     switch (comment.nbEtoiles) {
         case 1:
@@ -101,5 +108,5 @@ for (const comment of comments) {
     p.innerHTML = `${nbEtoiles}<br><b>${comment.utilisateur}:</b> ${comment.commentaire}`
 
     productImgWrapper.append(newPiece)
-    prodcutComments.append(p)
+    productComments.append(p)
 }

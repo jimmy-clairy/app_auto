@@ -1,0 +1,125 @@
+[
+    {
+        "id": 1,
+        "nom": "Plaquettes de frein (x4)",
+        "prix": 40,
+        "categorie": "Freinage",
+        "image": "assets/img/brake.webp",
+        "description": "Une qualité de freinage optimale, par tous les temps",
+        "disponibilite": true,
+        "newPiece": true
+    },
+    {
+        "id": 2,
+        "nom": "Ampoule boîte à gants",
+        "prix": 5,
+        "categorie": "Éclairage",
+        "image": "assets/img/lamp.webp",
+        "description": "Pour y voir clair dans l’habitacle",
+        "disponibilite": true
+    },
+    {
+        "id": 3,
+        "nom": "Ampoule Led",
+        "prix": 5.49,
+        "categorie": "Optiques",
+        "image": "assets/img/lampLed.webp",
+        "description": "Eclaire a plus de 200m",
+        "disponibilite": false,
+        "newPiece": true
+    },
+    {
+        "id": 4,
+        "nom": "Liquide de frein",
+        "prix": 9.6,
+        "categorie": "Freinage",
+        "image": "assets/img/liquidBrake.webp",
+        "disponibilite": true,
+        "newPiece": true
+    },
+    {
+        "id": 5,
+        "nom": "Balai d'essuie-glace",
+        "prix": 29.1,
+        "image": "assets/img/cleanGlass.webp",
+        "description": "Performances d’essuyage au Top ! Longueur : 550 mm",
+        "disponibilite": true
+    },
+    {
+        "id": 6,
+        "nom": "Jantes",
+        "prix": 50,
+        "categorie": "Jantes",
+        "image": "assets/img/wheel.webp",
+        "description": "Une qualité optimale",
+        "disponibilite": true,
+        "newPiece": true
+    },
+    {
+        "id": 7,
+        "nom": "Amortisseur avant",
+        "prix": 80,
+        "categorie": "Suspension",
+        "image": "assets/img/amortisseur.webp",
+        "description": "Un amortisseur de qualité pour une conduite confortable",
+        "disponibilite": true,
+        "newPiece": true
+    },
+    {
+        "id": 8,
+        "nom": "Filtre à air",
+        "prix": 20,
+        "categorie": "Filtres",
+        "image": "assets/img/filtres.webp",
+        "description": "Un filtre à air de qualité pour une meilleure performance du moteur",
+        "disponibilite": true,
+        "newPiece": true
+    },
+    {
+        "id": 9,
+        "nom": "Kit d'embrayage",
+        "prix": 200,
+        "categorie": "Transmission",
+        "image": "assets/img/embrayage.webp",
+        "description": "Un kit d'embrayage complet pour une meilleure transmission de la puissance",
+        "disponibilite": true,
+        "newPiece": true
+    },
+    {
+        "id": 10,
+        "nom": "Pompe à eau",
+        "prix": 60,
+        "categorie": "Refroidissement",
+        "image": "assets/img/waterPomp.webp",
+        "description": "Une pompe à eau de qualité pour une meilleure circulation du liquide de refroidissement",
+        "disponibilite": true,
+        "newPiece": true
+    },
+    {
+        "id": 11,
+        "nom": "Batterie",
+        "prix": 100,
+        "categorie": "Electrique",
+        "image": "assets/img/battery.webp",
+        "description": "Une batterie de qualité pour une alimentation électrique fiable",
+        "disponibilite": true
+    },
+    {
+        "id": 12,
+        "nom": "Alternateur",
+        "prix": 120,
+        "categorie": "Electrique",
+        "image": "assets/img/alternateur.webp",
+        "description": "Un alternateur de qualité pour une production d'électricité optimale",
+        "disponibilite": false
+    },
+    {
+        "id": 13,
+        "nom": "Courroie de distribution",
+        "prix": 50,
+        "categorie": "Distribution",
+        "image": "assets/img/courroie.webp",
+        "description": "Une courroie de distribution de qualité pour une synchronisation parfaite du moteur",
+        "disponibilite": false
+    }
+]

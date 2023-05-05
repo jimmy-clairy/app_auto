@@ -27,6 +27,7 @@
 			</div>
 		</div>
 	</header>
+
 	<main class="main__home">
 		<!-- Menu de recherche -->
 		<section class="filtres border">
@@ -69,7 +70,8 @@
 			<details>
 				<summary>Formulaire avis</summary>
 				<form class="form">
-					<div class="form__alert animatedALerte">Ce formulaire n'est pas fonctionnel non connecté à une base
+					<div class="form__alert font-bold animatedALerte">Ce formulaire n'est pas fonctionnel non connecté à
+						une base
 						de données</div>
 					<label for="form__pieceId">
 						Identifiant de la pièce :<br>
@@ -94,6 +96,30 @@
 
 		<!-- Cards produits -->
 		<section class="cards"></section>
+		<!-- Template Card -->
+		<template id="card-tmp">
+
+			<div class="card">
+				<div class="card__container border">
+					<a class="card__link" href="">
+						<div class="card__new animatedALerte">Nouveau</div>
+						<img class="card__img" src="" alt="" width="500" height="130">
+						<div class="card__body">
+							<h3 class="card__heading"></h3>
+							<p class="card__id"></p>
+							<p class="card__price font-bold"></p>
+							<p class="card__category"></p>
+							<p class="card__description"></p>
+							<p class="card__available font-bold"></p>
+						</div>
+					</a>
+					<button class="card__btn btn border">Afficher les 3 derniers avis</button>
+				</div>
+				<div class="card__avis"></div>
+			</div>
+
+		</template>
+		<!-- Template Card -->
 
 	</main>
 	<footer class="footer">
@@ -103,79 +129,29 @@
 		</div>
 	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
-	<script>
-		async function chart1() {
-			const dataFetch0 = await fetch("db.json").then(res => res.json())
+	<script type="module">
+		import { chartAvis, chartPieces } from "./js/chart.js"
 
-			const nbCommentaires = [0, 0, 0, 0, 0]
+		const allAvis = await fetch("./dataBase/avis.json").then(res => res.json())
+		const nbCommentaires = [0, 0, 0, 0, 0]
 
-			for (let commentaire of dataFetch0.avis) {
-				nbCommentaires[commentaire.nbEtoiles - 1]++
-			}
-
-			const ctx = document.getElementById("graph-avis");
-			new Chart(ctx, {
-				type: "bar",
-				data: {
-					labels: ["5", "4", "3", "2", "1"],
-					datasets: [{
-						label: "Étoiles attribuées",
-						data: nbCommentaires.reverse(),
-						backgroundColor: [
-							"#ff2a2a33",
-							"#00000033",
-							"#d4af3733",
-							"#c0c0c033",
-							" #b8733333"
-						],
-						borderColor: [
-							"#ff2a2a",
-							"#000",
-							"#d4af37",
-							"#c0c0c0",
-							" #b87333",
-						],
-						borderWidth: 1
-					}]
-				},
-				options: {
-					indexAxis: "y",
-				}
-			});
+		for (let avis of allAvis) {
+			nbCommentaires[avis.nbEtoiles - 1]++
 		}
-		chart1()
 
-		async function chart2() {
-			const dataFetch1 = await fetch("db.json").then(res => res.json())
-			const nb_piecesDispo = [0, 0]
-			for (let piece of dataFetch1.pieces) {
-				piece.disponibilite ? nb_piecesDispo[0]++ : nb_piecesDispo[1]++
-			}
+		const ctx = document.getElementById("graph-avis");
 
-			const ctx = document.getElementById("graph-dispo");
+		chartAvis(ctx, nbCommentaires, "y")
 
-			new Chart(ctx, {
-				type: "bar",
-				data: {
-					labels: ["Disponible", "Non disponible"],
-					datasets: [{
-						label: "Pieces disponible",
-						data: nb_piecesDispo,
-						backgroundColor: [
-							"#ff2a2a33",
-							"#00000033"
-						],
-						borderColor: [
-							"#ff2a2a",
-							"#000"
-						],
-						borderWidth: 1
-					}]
-				}
-			});
+		const pieces = await fetch("./dataBase/pieces.json").then(res => res.json())
+		const nbPiecesDispo = [0, 0]
+		for (let piece of pieces) {
+			piece.disponibilite ? nbPiecesDispo[0]++ : nbPiecesDispo[1]++
 		}
-		chart2()
 
+		const ctx1 = document.getElementById("graph-dispo");
+
+		chartPieces(ctx1, nbPiecesDispo)
 	</script>
 </body>
 

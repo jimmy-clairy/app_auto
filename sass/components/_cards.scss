@@ -8,8 +8,6 @@
 
 .card {
     width: 100%;
-    position: relative;
-    height: fit-content;
 
     @include laptop {
         width: calc(50% - ($gap / 2));
@@ -23,33 +21,9 @@
         width: calc(25% - (($gap * 3) / 4));
     }
 
-    &__content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 1rem 1rem;
-        transition: .3s;
-
-        @include laptop {
-            min-height: 43rem;
-        }
-    }
-
-    &__img {
-        height: 13rem;
-        width: calc(100% + 2rem);
-        object-fit: cover;
-        // object-position: top;
-        border-radius: $rad $rad 0 0;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    &__avis {
-        background-color: rgb(236, 236, 236);
-        border-radius: $rad;
-        padding: 1rem 1rem 0rem;
-        text-align: left;
+    &__container {
+        overflow: hidden;
+        position: relative;
     }
 
     &__new {
@@ -61,13 +35,42 @@
         left: 0;
     }
 
+    &__img {
+        height: 13rem;
+        box-shadow: $shadow;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 25rem;
+        padding: 0 1rem;
+    }
+
     & p {
-        margin-top: .5rem;
-        margin-bottom: .5rem;
+        margin: .5rem 0;
+    }
+
+    &__description {
+        flex: 1;
     }
 
     &__btn {
-        font-weight: 600;
-        padding: 1rem .5rem;
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    &__avis {
+        margin-top: 1rem;
+        background-color: rgb(236, 236, 236);
+        border-radius: $rad;
+        padding: 1rem 1rem 0rem;
+        text-align: left;
+        display: none;
+
+        &.visible {
+            display: block;
+        }
     }
 }

@@ -67,53 +67,24 @@
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
-    <script>
+    <script type="module">
+        import { chartAvis } from "../js/chart.js"
         const url = new URL(document.location)
         const id = Number(url.searchParams.get("id"))
 
-        async function chart1() {
-            const ctx = document.getElementById('myChart');
+        const ctx = document.getElementById('myChart');
 
-            const dataFetch = await fetch("../db.json").then(res => res.json())
-            const allAvis = dataFetch.avis
-            const avis = allAvis.filter(avis => avis.pieceId === id)
+        const allAvis = await fetch("../dataBase/avis.json").then(res => res.json())
 
-            const nbCommentaires = [0, 0, 0, 0, 0]
+        const avis = allAvis.filter(avis => avis.pieceId === id)
 
-            for (let commentaire of avis) {
-                nbCommentaires[commentaire.nbEtoiles - 1]++
-            }
+        const nbCommentaires = [0, 0, 0, 0, 0]
 
-            new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: ["5", "4", "3", "2", "1"],
-                    datasets: [{
-                        label: "Étoiles attribuées",
-                        data: nbCommentaires.reverse(),
-                        backgroundColor: [
-                            "#ff2a2a33",
-                            "#00000033",
-                            "#d4af3733",
-                            "#c0c0c033",
-                            " #b8733333"
-                        ],
-                        borderColor: [
-                            "#ff2a2a",
-                            "#000",
-                            "#d4af37",
-                            "#c0c0c0",
-                            " #b87333",
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    indexAxis: "x",
-                }
-            });
+        for (let commentaire of avis) {
+            nbCommentaires[commentaire.nbEtoiles - 1]++
         }
-        chart1()
+
+        chartAvis(ctx, nbCommentaires)
     </script>
 </body>
 
