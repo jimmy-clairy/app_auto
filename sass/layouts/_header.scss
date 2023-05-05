@@ -2,7 +2,7 @@
     padding: 1rem 0 0 0;
     margin-bottom: 2rem;
     background: $gradient;
-    color: $cl-white;
+    color: #fff;
     position: sticky;
     top: -135px;
     z-index: 5;
@@ -54,7 +54,6 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        color: $cl-white;
         cursor: pointer;
 
         .showTotal {

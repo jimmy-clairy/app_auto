@@ -3,7 +3,15 @@ import { deleteProduct, getBasket, totalBasket } from "../function.js";
 const showTotal = document.querySelector(".showTotal")
 showTotal.innerText = `${totalBasket()} €`
 
+const cartHeading = document.querySelector(".cart__heading")
 const basket = getBasket()
+console.log(basket);
+if (basket.length === 0) {
+    cartHeading.innerText = "Panier vide"
+    cartHeading.style.fontSize = '36px'
+} else {
+    cartHeading.innerText = ""
+}
 
 const cards = document.querySelector(".cards")
 for (const piece of basket) {
@@ -35,11 +43,21 @@ for (const piece of basket) {
 
 const btnYes = document.querySelector(".modal__yes")
 btnYes.addEventListener("click", () => {
+
     const modal = document.querySelector(".modal")
     const id = Number(document.querySelector(".modal").dataset.id)
+
     deleteProduct(id)
     modal.classList.remove("modal-visible")
     showTotal.innerText = `${totalBasket()} €`
+
+    const basket = getBasket()
+    if (basket.length === 0) {
+        cartHeading.innerText = "Panier vide"
+        cartHeading.style.fontSize = '36px'
+    }
+
+
 })
 
 const btnNo = document.querySelector(".modal__no")
