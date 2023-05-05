@@ -1,3 +1,9 @@
+/**
+ * Crée un graphique avec les données transmises
+ * @param {HTMLElement} ctx 
+ * @param {Array.<number>} data 
+ * @param {string} axe 
+ */
 export async function chartAvis(ctx, data, axe = "x") {
     new Chart(ctx, {
         type: "bar",
@@ -11,14 +17,14 @@ export async function chartAvis(ctx, data, axe = "x") {
                     "#00000033",
                     "#d4af3733",
                     "#c0c0c033",
-                    " #b8733333"
+                    "#b8733333"
                 ],
                 borderColor: [
                     "#ff2a2a",
                     "#000",
                     "#d4af37",
                     "#c0c0c0",
-                    " #b87333",
+                    "#b87333",
                 ],
                 borderWidth: 1
             }]
@@ -29,6 +35,12 @@ export async function chartAvis(ctx, data, axe = "x") {
     });
 }
 
+/**
+ * Crée un graphique avec les données transmises
+ * @param {HTMLElement} ctx 
+ * @param {Array.<number>} data 
+ * @param {string} axe 
+ */
 export function chartPieces(ctx, data, axe = "x") {
     new Chart(ctx, {
         type: "bar",

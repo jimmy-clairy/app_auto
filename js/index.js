@@ -1,27 +1,24 @@
 import { postAvis } from "./avis.js"
 import { Card } from "./Card.js"
-import { prixMax } from "./function.js"
+import { prixMax, totalBasket } from "./function.js"
+import { fetchData } from "./fetchData.js"
 
-let pieces = window.localStorage.getItem("Les bonnes Piéces - Pieces")
-if (pieces === null) {
-    const res = await fetch("./dataBase/pieces.json")
-    if (res.ok !== true) {
-        throw new Error("Connexion serveur impossible")
-    }
-    pieces = await res.json()
-    localStorage.setItem("Les bonnes Piéces - Pieces", JSON.stringify(pieces))
-    console.log("Appel API")
-
-} else { pieces = JSON.parse(pieces) }
+// Recupere les data piece 
+const pieces = await fetchData("./dataBase/pieces.json")
+// Recupere les data avis 
+const avis = await fetchData("./dataBase/avis.json")
 
 const cards = document.querySelector(".cards")
-function showCard(pieces) {
+function showCard(pieces, avis) {
     for (const piece of pieces) {
-        cards.appendChild(new Card(piece))
+        cards.appendChild(new Card(piece, avis))
     }
 }
-showCard(pieces)
+showCard(pieces, avis)
+
 postAvis()
+const showTotal = document.querySelector(".showTotal")
+showTotal.innerText = `${totalBasket()} €`
 
 // Filter -----------------------------------------------------------
 const btnTry = document.querySelector(".filtres .btn-try")
@@ -30,7 +27,7 @@ btnTry.addEventListener("click", () => {
     const piecesTry = [...pieces]
     piecesTry.sort((a, b) => a.prix - b.prix)
     cards.innerHTML = ""
-    showCard(piecesTry)
+    showCard(piecesTry, avis)
 })
 
 const btnDetry = document.querySelector(".filtres .btn-detry")
@@ -38,21 +35,21 @@ btnDetry.addEventListener("click", () => {
     const piecesDetry = [...pieces]
     piecesDetry.sort((a, b) => b.prix - a.prix)
     cards.innerHTML = ""
-    showCard(piecesDetry)
+    showCard(piecesDetry, avis)
 })
 
 const btnDispo = document.querySelector(".filtres .btn-dispo")
 btnDispo.addEventListener("click", () => {
     const piecesFilter = pieces.filter((piece) => piece.disponibilite)
     cards.innerHTML = ""
-    showCard(piecesFilter)
+    showCard(piecesFilter, avis)
 })
 
 const btnNew = document.querySelector(".filtres .btn-new")
 btnNew.addEventListener("click", () => {
     const piecesFilter = pieces.filter((piece) => piece.newPiece)
     cards.innerHTML = ""
-    showCard(piecesFilter)
+    showCard(piecesFilter, avis)
 })
 
 // Permet d"ajuster le prix sur le range avec la piece la plus chere
@@ -70,14 +67,9 @@ rangePrice.addEventListener("input", (event) => {
 rangePrice.addEventListener("change", () => {
     const piecesFilter = pieces.filter((piece) => piece.prix <= rangePrice.value)
     cards.innerHTML = ""
-    showCard(piecesFilter)
+    showCard(piecesFilter, avis)
 })
 
-// Données ----------------------------------------------------------------------------
-const btnUpdate = document.querySelector(".filtres .btn-maj")
-btnUpdate.addEventListener("click", () => localStorage.removeItem("Les bonnes Piéces - Pieces"))
-
-// Form
-// Modifie le nombre input.max selon le nombre de pieces
+// Formulaire // Modifie le nombre input.max selon le nombre de pieces
 const inputIdPiece = document.getElementById("form__pieceId")
 inputIdPiece.max = pieces.length

@@ -10,7 +10,7 @@ export class Card {
     *          disponibilite:boolean}} piece 
     * @returns {HTMLElement}
     */
-    constructor(piece) {
+    constructor(piece, avis) {
         const cardClone = document.getElementById("card-tmp").content.firstElementChild.cloneNode(true)
         cardClone.setAttribute("data-id", piece.id)
 
@@ -54,55 +54,130 @@ export class Card {
             this.showAvis(e)
         })
 
+        const id = Number(cardClone.dataset.id)
+        let cardAvis = cardClone.querySelector(".card__avis")
+        cardAvis.innerHTML = this.addAvis(id, avis)
+
+        // const id = Number(cardClone.dataset.id)
+        // const cardAvis = cardClone.querySelector(".card__avis")
+
+        // const avisIdReverse = avis.filter(a => a.pieceId === id).reverse()
+        // const last3Avis = []
+        // for (let i = 0; i < 3; i++) {
+        //     last3Avis.push(avisIdReverse[i])
+        // }
+
+        // let nbEtoiles = ""
+        // for (const avis of last3Avis) {
+        //     switch (avis.nbEtoiles) {
+        //         case 1:
+        //             nbEtoiles = "⭐"
+        //             break
+        //         case 2:
+        //             nbEtoiles = "⭐⭐"
+        //             break
+        //         case 3:
+        //             nbEtoiles = "⭐⭐⭐"
+        //             break
+        //         case 4:
+        //             nbEtoiles = "⭐⭐⭐⭐"
+        //             break
+        //         case 5:
+        //             nbEtoiles = "⭐⭐⭐⭐⭐"
+        //             break
+
+        //         default:
+        //             break
+        //     }
+        //     cardAvis.innerHTML += `${nbEtoiles}<br> <b>${avis.utilisateur}:</b> ${avis.commentaire} <br><br>`
+        // }
         return cardClone
     }
 
+    addAvis(id, avis) {
+        // const id = Number(cardClone.dataset.id)
+        // const cardAvis = cardClone.querySelector(".card__avis")
+
+        const avisIdReverse = avis.filter(a => a.pieceId === id).reverse()
+        const last3Avis = []
+        for (let i = 0; i < 3; i++) {
+            last3Avis.push(avisIdReverse[i])
+        }
+        let textContent = ""
+        let nbEtoiles = ""
+        for (const avis of last3Avis) {
+            switch (avis.nbEtoiles) {
+                case 1:
+                    nbEtoiles = "⭐"
+                    break
+                case 2:
+                    nbEtoiles = "⭐⭐"
+                    break
+                case 3:
+                    nbEtoiles = "⭐⭐⭐"
+                    break
+                case 4:
+                    nbEtoiles = "⭐⭐⭐⭐"
+                    break
+                case 5:
+                    nbEtoiles = "⭐⭐⭐⭐⭐"
+                    break
+
+                default:
+                    break
+            }
+            textContent += `${nbEtoiles}<br> <b>${avis.utilisateur}:</b> ${avis.commentaire} <br><br>`
+        }
+
+        return textContent
+    }
+
     /** @param {PointerEvent} e */
-    async showAvis(e) {
+    showAvis(e) {
         const card = e.target.closest(".card")
-        const id = Number(card.dataset.id)
+        // const id = Number(card.dataset.id)
 
         const cardAvis = card.querySelector(".card__avis")
         cardAvis.classList.toggle("visible")
 
-        if (cardAvis.innerHTML === "") {
-            const res = await fetch("./dataBase/avis.json")
-            const avis = await res.json()
-            console.log("Appel API");
+        // if (cardAvis.innerHTML === "") {
+        //     const res = await fetch("./dataBase/avis.json")
+        //     const avis = await res.json()
+        //     console.log("Appel API");
 
-            // Cherche les avis par rapport à l'ID et retourne le tableau
-            const avisIdReverse = avis.filter(a => a.pieceId === id).reverse()
-            // Selectionne les 3 dernier avis
-            const last3Avis = []
-            for (let i = 0; i < 3; i++) {
-                last3Avis.push(avisIdReverse[i])
-            }
+        // Cherche les avis par rapport à l'ID et retourne le tableau
+        // const avisIdReverse = avis.filter(a => a.pieceId === id).reverse()
+        // Selectionne les 3 dernier avis
+        // const last3Avis = []
+        // for (let i = 0; i < 3; i++) {
+        //     last3Avis.push(avisIdReverse[i])
+        // }
 
-            let nbEtoiles = ""
-            for (const avis of last3Avis) {
-                switch (avis.nbEtoiles) {
-                    case 1:
-                        nbEtoiles = "⭐"
-                        break
-                    case 2:
-                        nbEtoiles = "⭐⭐"
-                        break
-                    case 3:
-                        nbEtoiles = "⭐⭐⭐"
-                        break
-                    case 4:
-                        nbEtoiles = "⭐⭐⭐⭐"
-                        break
-                    case 5:
-                        nbEtoiles = "⭐⭐⭐⭐⭐"
-                        break
+        // let nbEtoiles = ""
+        // for (const avis of last3Avis) {
+        //     switch (avis.nbEtoiles) {
+        //         case 1:
+        //             nbEtoiles = "⭐"
+        //             break
+        //         case 2:
+        //             nbEtoiles = "⭐⭐"
+        //             break
+        //         case 3:
+        //             nbEtoiles = "⭐⭐⭐"
+        //             break
+        //         case 4:
+        //             nbEtoiles = "⭐⭐⭐⭐"
+        //             break
+        //         case 5:
+        //             nbEtoiles = "⭐⭐⭐⭐⭐"
+        //             break
 
-                    default:
-                        break
-                }
-                cardAvis.innerHTML += `${nbEtoiles}<br> <b>${avis.utilisateur}:</b> ${avis.commentaire} <br><br>`
-            }
-        }
+        //         default:
+        //             break
+        //     }
+        //     cardAvis.innerHTML += `${nbEtoiles}<br> <b>${avis.utilisateur}:</b> ${avis.commentaire} <br><br>`
+        // }
+        // }
     }
 }
 

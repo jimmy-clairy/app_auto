@@ -1,32 +1,15 @@
-import { addBasket } from "../function.js"
-
+import { fetchData } from "../fetchData.js"
+import { addBasket, totalBasket } from "../function.js"
 
 const url = new URL(document.location)
 const id = Number(url.searchParams.get("id"))
-// console.log(id)
-async function fetchPieces() {
-    const res = await fetch("../dataBase/pieces.json")
-    if (res.ok === true) {
-        return await res.json()
-    }
-    throw new Error("Connection impossible server")
-}
-async function fetchAvis() {
-    const res = await fetch("../dataBase/avis.json")
-    if (res.ok === true) {
-        return await res.json()
-    }
-    throw new Error("Connection impossible server")
-}
 
-const pieces = await fetchPieces()
-
+const pieces = await fetchData("../dataBase/pieces.json")
 const foundPiece = pieces.filter(piece => piece.id === id)
 const piece = foundPiece[0]
 
-const allAvis = await fetchAvis()
+const allAvis = await fetchData("../dataBase/avis.json")
 const avis = allAvis.filter(a => a.pieceId === id).reverse()
-
 
 const productHeading = document.querySelector(".product__heading")
 productHeading.textContent = piece.nom
@@ -66,10 +49,13 @@ productAdd.addEventListener("click", () => {
     const modal = document.querySelector(".modal")
     modal.classList.add("modal-visible")
 })
+const showTotal = document.querySelector(".showTotal")
+showTotal.innerText = `${totalBasket()} €`
 
 const btnYes = document.querySelector(".modal__yes")
 btnYes.addEventListener("click", () => {
     addBasket(piece)
+    showTotal.innerText = `${totalBasket()} €`
     const modal = document.querySelector(".modal")
     modal.classList.remove("modal-visible")
 })

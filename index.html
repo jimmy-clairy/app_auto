@@ -17,11 +17,12 @@
 			<a href="#"><img class="header__img" src="assets/icon/carRed.webp" width="500" height="250" alt="LOGO"></a>
 			<div class="header__wrapper">
 				<h1 class="header__heading"><a href="#">Pieces Auto</a></h1>
-				<a href="./html/cart.html" aria-label="Logo panier">
+				<a class="basket" href="./html/cart.html" aria-label="Logo panier">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
 						<path
 							d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
 					</svg>
+					<span class="showTotal font-bold">0</span>
 				</a>
 
 			</div>
@@ -65,7 +66,6 @@
 						</div>
 					</div>
 				</div>
-				<button class="btn border btn-maj">Mettre à jour les pièces</button>
 			</details>
 			<details>
 				<summary>Formulaire avis</summary>
@@ -131,26 +131,27 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
 	<script type="module">
 		import { chartAvis, chartPieces } from "./js/chart.js"
+		import { fetchData } from "./js/fetchData.js"
 
-		const allAvis = await fetch("./dataBase/avis.json").then(res => res.json())
+		// Graphique pour les avis
+		const allAvis = await fetchData("./dataBase/avis.json")
 		const nbCommentaires = [0, 0, 0, 0, 0]
 
 		for (let avis of allAvis) {
 			nbCommentaires[avis.nbEtoiles - 1]++
 		}
-
+		nbCommentaires.reverse()
 		const ctx = document.getElementById("graph-avis");
-
 		chartAvis(ctx, nbCommentaires, "y")
 
-		const pieces = await fetch("./dataBase/pieces.json").then(res => res.json())
+		// Graphique pour les pieces
+		const pieces = await fetchData("./dataBase/pieces.json")
 		const nbPiecesDispo = [0, 0]
+
 		for (let piece of pieces) {
 			piece.disponibilite ? nbPiecesDispo[0]++ : nbPiecesDispo[1]++
 		}
-
 		const ctx1 = document.getElementById("graph-dispo");
-
 		chartPieces(ctx1, nbPiecesDispo)
 	</script>
 </body>

@@ -2,10 +2,7 @@
     min-height: 56vh;
 
     .cards {
-        display: flex;
         justify-content: center;
-        flex-wrap: wrap;
-        gap: $gap;
     }
 
     .card {
@@ -13,7 +10,7 @@
 
         @include tablette {
             display: flex;
-            height: 18rem;
+            min-height: 18rem;
             width: 60rem;
         }
 
@@ -29,12 +26,10 @@
 
         &__body {
             padding: 0 1rem 1rem;
-            flex: 1;
+            min-height: auto;
 
             @include tablette {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
+                flex: 1;
                 padding: 0 2rem 1rem 2rem;
                 text-align: left;
             }

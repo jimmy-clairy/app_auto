@@ -1,4 +1,7 @@
-import { deleteProduct, getBasket, saveBasket } from "../function.js";
+import { deleteProduct, getBasket, totalBasket } from "../function.js";
+
+const showTotal = document.querySelector(".showTotal")
+showTotal.innerText = `${totalBasket()} €`
 
 const basket = getBasket()
 
@@ -36,6 +39,7 @@ btnYes.addEventListener("click", () => {
     const id = Number(document.querySelector(".modal").dataset.id)
     deleteProduct(id)
     modal.classList.remove("modal-visible")
+    showTotal.innerText = `${totalBasket()} €`
 })
 
 const btnNo = document.querySelector(".modal__no")

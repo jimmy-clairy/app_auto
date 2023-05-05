@@ -10,7 +10,21 @@ export function prixMax(objet) {
 }
 
 /**
- * Save object in localStorage
+ * Calcule le total du panier
+ * @returns {number}
+ */
+export function totalBasket() {
+    const basket = getBasket()
+    let result = 0
+
+    for (const product of basket) {
+        result += product.quantity * product.prix
+    }
+    return result
+}
+
+/**
+ * Sauvegarde objet dans localStorage
  * @param {object} product 
  */
 export function saveBasket(product) {
@@ -18,7 +32,7 @@ export function saveBasket(product) {
 }
 
 /**
- * Get object in localStorage
+ * recuper l'objet du localStorage
  * @returns {object | null}
  */
 export function getBasket() {
@@ -30,28 +44,25 @@ export function getBasket() {
 }
 
 /**
- * Add object in localStorage
+ * Ajoute un objet dans le localStorage
  * @param {object} product 
  */
 export function addBasket(product) {
     const basket = getBasket()
-    // Check in basket if product is there
+    // Verifie dans le panier si le produit est là
     const foundProduct = basket.find(p => p.id === product.id)
-    console.log(basket);
-    console.log(foundProduct);
     if (foundProduct === undefined) {
         product.quantity = 1;
         basket.push(product);
     } else {
         foundProduct.quantity += 1
     }
-
     saveBasket(basket)
 }
 
 
 /**
- * Delete product in localStorage and HTML
+ * Supprime un produit dans le localStorage et le HTML
  * @param {number} id 
  */
 export function deleteProduct(id) {
