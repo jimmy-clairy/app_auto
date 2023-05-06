@@ -1,12 +1,18 @@
 .main__product {
-    max-width: 110rem;
-    min-height: 68vh;
+    max-width: 100rem;
+    padding-top: 0;
 
     @include tablette {
         display: flex;
         flex-wrap: wrap;
+        align-items: flex-start;
         justify-content: space-between;
         gap: 4rem;
+        flex: 1;
+    }
+
+    @include laptop-1600 {
+        align-items: center;
     }
 
     & .product__info {
@@ -24,8 +30,7 @@
 
 .product {
     flex: 1;
-    max-width: 50rem;
-    padding-bottom: 2rem;
+    max-width: 40rem;
 
     @include tablette {
         width: 56%;
@@ -34,6 +39,12 @@
     &__heading {
         margin: 2rem 0;
         font-size: clamp(2.2rem, 4vw, 3rem);
+    }
+
+    .card__new {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 
     &__img-wrapper {
@@ -50,25 +61,15 @@
     }
 
     &__price {
-        font-size: 3rem;
+        font-size: 2.8rem;
+        margin: 2rem 0;
     }
-
 
     &__add {
-        padding: 1rem;
-    }
-
-    &__starts {
-        display: block;
+        padding: 1rem 2rem;
     }
 
     &__comments {
         text-align: left;
-    }
-
-    .card__new {
-        position: absolute;
-        top: 0;
-        left: 0;
     }
 }

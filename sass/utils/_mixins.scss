@@ -1,29 +1,29 @@
 @mixin tablette {
     @media screen and (min-width:600px) {
-        @content
+        @content;
     }
 }
-
-;
 
 @mixin laptop {
     @media screen and (min-width:900px) {
-        @content
+        @content;
     }
 }
-
-;
 
 @mixin laptop-M {
     @media screen and (min-width:1200px) {
-        @content
+        @content;
     }
 }
 
-;
-
 @mixin laptop-L {
     @media screen and (min-width:1500px) {
-        @content
+        @content;
+    }
+}
+
+@mixin laptop-1600 {
+    @media screen and (min-width:1600px) {
+        @content;
     }
 }

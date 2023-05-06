@@ -1,6 +1,6 @@
 .footer {
     padding: 1rem 0;
-    margin-top: 2rem;
+    margin-top: auto;
     background: $gradient;
     color: #fff;
 
@@ -11,11 +11,12 @@
 
         @include tablette {
             display: flex;
+            align-items: center;
         }
     }
 
     &__img {
-        height: 12rem;
+        height: 8rem;
         width: 24rem;
         object-fit: cover;
         border-radius: $rad;
@@ -23,8 +24,8 @@
 
     &__heading {
         flex: 1;
+        margin: 0;
         font-family: Courgette, "Helvetica Neue", Helvetica, sans-serif;
         font-size: 4rem;
-        margin-bottom: 1.2rem;
     }
 }

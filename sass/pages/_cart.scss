@@ -1,5 +1,4 @@
 .main__cart {
-    min-height: 56vh;
 
     .cards {
         justify-content: center;
@@ -10,7 +9,7 @@
 
         @include tablette {
             display: flex;
-            min-height: 18rem;
+            height: 18rem;
             width: 60rem;
         }
 
