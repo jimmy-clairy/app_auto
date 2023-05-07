@@ -30,11 +30,12 @@
     </header>
     <div class="modal">
         <div class="modal__wrapper">
-            <p class="modal__p font-bold">Voulez-vous vraiment ajouter cet article ?</p>
-            <button class="btn modal__yes border font-bold">Oui</button>
-            <button class="btn modal__no border font-bold">Non</button>
+            <p class="modal__p font-bold">Cet article est déjà dans le panier voulez-vous le rajouter ?</p>
+            <button class="btn modal__btn-yes border font-bold">Oui</button>
+            <button class="btn modal__btn-no border font-bold">Non</button>
         </div>
     </div>
+    <div class="popUp font-bold border">Produit ajouté au panier</div>
     <main class="main__product">
         <section class="product">
             <h2 class="product__heading">product</h2>
@@ -46,7 +47,14 @@
             <p class="product__price font-bold"></p>
             <p class="product__description"></p>
             <p class="product__available font-bold"></p>
-            <button class="product__add btn border font-bold">Ajouter au panier</button>
+            <form class="form__add-cart">
+                <label class="product__quantity" for="quantity">Quantité:
+                    <input id="quantity" name="quantity" type="number" min="1" max="10" placeholder="Max 10" value="1"
+                        required>
+                </label>
+                <button type="submit" class="product__add btn border font-bold">Ajouter au panier</button>
+            </form>
+
         </section>
 
         <section class="product__info">

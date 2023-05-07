@@ -1,0 +1,12 @@
+.popUp {
+    position: fixed;
+    z-index: 10;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $cl-accept;
+    padding: 2rem;
+    font-size: 2rem;
+    width: 28rem;
+    display: none;
+}

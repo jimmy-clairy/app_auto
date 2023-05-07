@@ -23,6 +23,12 @@ export function totalBasket() {
     return result
 }
 
+/** Affiche le total */
+export function showTotal() {
+    const showTotal = document.querySelector(".showTotal")
+    showTotal.innerText = `${totalBasket()} €`
+}
+
 /**
  * Sauvegarde objet dans localStorage
  * @param {object} product 
@@ -52,14 +58,12 @@ export function addBasket(product) {
     // Verifie dans le panier si le produit est là
     const foundProduct = basket.find(p => p.id === product.id)
     if (foundProduct === undefined) {
-        product.quantity = 1;
         basket.push(product);
     } else {
-        foundProduct.quantity += 1
+        foundProduct.quantity += product.quantity
     }
     saveBasket(basket)
 }
-
 
 /**
  * Supprime un produit dans le localStorage et le HTML

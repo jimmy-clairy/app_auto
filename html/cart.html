@@ -31,13 +31,13 @@
     <div class="modal">
         <div class="modal__wrapper">
             <p class="modal__p font-bold">Voulez-vous vraiment suprimer cet article ?</p>
-            <button class="btn modal__yes border font-bold">Oui</button>
-            <button class="btn modal__no border font-bold">Non</button>
+            <button class="btn modal__btn-yes border font-bold">Oui</button>
+            <button class="btn modal__btn-no border font-bold">Non</button>
         </div>
     </div>
     <main class="main__cart">
         <div class="cards"></div>
-        <h2 class="cart__heading">Panier</h2>
+        <h2 class="cart__heading"></h2>
         <!-- Template -->
         <template id="card-tmp">
             <div class="card border">
@@ -46,11 +46,12 @@
                     <h2 class="card__heading"></h2>
                     <label for="card__quantity">
                         Quantité:
-                        <input type="number" name="card__quantity" id="card__quantity" class="card__quantity" min="0"
+                        <input type="number" name="card__quantity" id="card__quantity" class="card__quantity" min="1"
                             max="100">
                     </label>
                     <p class="card__price font-bold"></p>
-                    <button class="btn border card__delete">Supprimer</button>
+                    <p class="card__price-total font-bold"></p>
+                    <button class="card__delete btn border">Supprimer</button>
                 </div>
             </div>
         </template>

@@ -24,7 +24,7 @@
         width: fit-content;
     }
 
-    &__yes {
+    &__btn-yes {
         background-color: $cl-accept;
 
         &:hover {
@@ -32,15 +32,11 @@
         }
     }
 
-    &__no {
+    &__btn-no {
         background-color: $cl-hover;
 
         &:hover {
             background-color: darken($cl-hover, 15%);
         }
     }
-}
-
-.modal-visible {
-    display: flex;
 }

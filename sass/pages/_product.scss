@@ -1,4 +1,5 @@
 .main__product {
+    margin-top: 0;
     max-width: 100rem;
 
     @include tablette {
@@ -40,6 +41,16 @@
 
         &__add {
             padding: 1rem 2rem;
+        }
+
+        &__quantity {
+            display: block;
+            margin-bottom: 1rem;
+
+            & input {
+                border-radius: $rad;
+                border: 1px solid $cl-primary;
+            }
         }
 
         &__comments {

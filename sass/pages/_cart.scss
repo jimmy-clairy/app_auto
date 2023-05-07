@@ -1,4 +1,5 @@
 .main__cart {
+    margin-bottom: 0;
 
     .cards {
         justify-content: center;
@@ -7,35 +8,59 @@
     .card {
         overflow: hidden;
 
+        @media screen and (min-width:400px) {
+            width: calc(50% - ($gap/2));
+        }
+
         @include tablette {
             display: flex;
-            height: 18rem;
-            width: 60rem;
+            height: 16rem;
+            width: 45rem;
         }
 
         &__img {
             width: 100%;
             object-fit: cover;
+            object-position: left;
 
             @include tablette {
-                width: 42%;
+                width: 40%;
                 height: 100%;
             }
         }
 
         &__body {
-            padding: 0 1rem 1rem;
-            min-height: auto;
+            min-height: 18rem;
+            padding: 1rem;
 
             @include tablette {
                 flex: 1;
-                padding: 0 2rem 1rem 2rem;
+                padding: 1rem 2rem;
                 text-align: left;
+                min-height: fit-content;
+            }
+
+            & p {
+                margin: 0;
+            }
+        }
+
+        &__heading {
+            height: 4.6rem;
+            margin: 0;
+            font-size: 2rem;
+
+            @include tablette {
+                height: fit-content;
             }
         }
 
         &__quantity {
             width: 4rem;
+        }
+
+        &__delete {
+            padding: 0.5rem;
         }
     }
 }

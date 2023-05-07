@@ -1,5 +1,5 @@
 import { fetchData } from "../fetchData.js"
-import { addBasket, totalBasket } from "../function.js"
+import { addBasket, getBasket, showTotal, totalBasket } from "../function.js"
 
 const url = new URL(document.location)
 const id = Number(url.searchParams.get("id"))
@@ -12,9 +12,8 @@ const allAvis = await fetchData("../dataBase/avis.json")
 const avis = allAvis.filter(a => a.pieceId === id).reverse()
 
 
-/**
- * Crée un produit a partir des données
- */
+
+/** Crée un produit a partir des données */
 const productHeading = document.querySelector(".product__heading")
 productHeading.textContent = piece.nom
 
@@ -29,7 +28,7 @@ const productDescription = document.querySelector(".product__description")
 productDescription.textContent = piece.description ?? "Pas de description pour le moment."
 
 const productPrice = document.querySelector(".product__price")
-productPrice.textContent = `Prix: ${piece.prix}€`
+productPrice.textContent = `Prix: ${piece.prix} €`
 
 const productAvailable = document.querySelector(".product__available")
 productAvailable.textContent = piece.disponibilite ? "En stock" : "Rupture"
@@ -41,38 +40,49 @@ if (piece.disponibilite) {
     productAvailable.classList.add('rupture')
 }
 
-const productAdd = document.querySelector('.product__add')
-if (!piece.disponibilite) productAdd.setAttribute("hidden", "")
+const formAddCart = document.querySelector('.form__add-cart')
+if (!piece.disponibilite) formAddCart.setAttribute("hidden", "")
 
-/**
- * Ouvre une modale si le client veut ajouter un produit au panier
- */
-productAdd.addEventListener("click", () => {
-    const modal = document.querySelector(".modal")
-    modal.classList.add("modal-visible")
+showTotal()
+
+/** Formualire d'ajout du produit au panier */
+formAddCart.addEventListener("submit", (e) => {
+    e.preventDefault()
+    // delete piece.prix
+    piece.quantity = Number(formAddCart.quantity.value)
+
+    const basket = getBasket()
+    const foundProduct = basket.find(p => p.id === piece.id)
+    if (foundProduct) {
+        const modal = document.querySelector(".modal")
+        modal.style.display = "flex"
+    } else {
+        const popUp = document.querySelector(".popUp")
+        popUp.style.display = "block"
+        setTimeout(() => {
+            popUp.style.display = "none"
+        }, 2000)
+        addBasket(piece)
+        showTotal()
+    }
 })
 
-const btnYes = document.querySelector(".modal__yes")
+const btnYes = document.querySelector(".modal__btn-yes")
 btnYes.addEventListener("click", () => {
-    addBasket(piece)
-    showTotal.innerText = `${totalBasket()} €`
     const modal = document.querySelector(".modal")
-    modal.classList.remove("modal-visible")
+    modal.style.display = "none"
+    addBasket(piece)
+    const showTotal = document.querySelector(".showTotal")
+    showTotal.innerText = `${totalBasket()} €`
 })
 
-const btnNo = document.querySelector(".modal__no")
+const btnNo = document.querySelector(".modal__btn-no")
 btnNo.addEventListener("click", () => {
     const modal = document.querySelector(".modal")
-    modal.classList.remove("modal-visible")
+    modal.style.display = "none"
 })
 
-const showTotal = document.querySelector(".showTotal")
-showTotal.innerText = `${totalBasket()} €`
-
-
-/**
- * Aperçus des avis
- */
+/** Aperçus des avis */
 const productComments = document.querySelector(".product__comments")
 for (const comment of avis) {
     let nbEtoiles = ""
