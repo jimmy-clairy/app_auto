@@ -94,7 +94,7 @@
         for (let commentaire of avis) {
             nbCommentaires[commentaire.nbEtoiles - 1]++
         }
-
+        nbCommentaires.reverse()
         const ctx = document.getElementById('myChart');
         chartAvis(ctx, nbCommentaires)
     </script>
