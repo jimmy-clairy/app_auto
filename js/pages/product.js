@@ -11,16 +11,15 @@ const piece = foundPiece[0]
 const allAvis = await fetchData("../dataBase/avis.json")
 const avis = allAvis.filter(a => a.pieceId === id).reverse()
 
+
+/**
+ * Crée un produit a partir des données
+ */
 const productHeading = document.querySelector(".product__heading")
 productHeading.textContent = piece.nom
 
-const productImgWrapper = document.querySelector(".product__img-wrapper")
-
-const newPiece = document.createElement("div")
-if (piece.newPiece) {
-    newPiece.setAttribute("class", "card__new animatedALerte")
-    newPiece.innerText = "Nouveau"
-}
+const newPiece = document.querySelector(".card__new")
+if (piece.newPiece) newPiece.style.display = "block"
 
 const productImg = document.querySelector(".product__img")
 productImg.src = `../${piece.image}`
@@ -45,12 +44,13 @@ if (piece.disponibilite) {
 const productAdd = document.querySelector('.product__add')
 if (!piece.disponibilite) productAdd.setAttribute("hidden", "")
 
+/**
+ * Ouvre une modale si le client veut ajouter un produit au panier
+ */
 productAdd.addEventListener("click", () => {
     const modal = document.querySelector(".modal")
     modal.classList.add("modal-visible")
 })
-const showTotal = document.querySelector(".showTotal")
-showTotal.innerText = `${totalBasket()} €`
 
 const btnYes = document.querySelector(".modal__yes")
 btnYes.addEventListener("click", () => {
@@ -66,6 +66,13 @@ btnNo.addEventListener("click", () => {
     modal.classList.remove("modal-visible")
 })
 
+const showTotal = document.querySelector(".showTotal")
+showTotal.innerText = `${totalBasket()} €`
+
+
+/**
+ * Aperçus des avis
+ */
 const productComments = document.querySelector(".product__comments")
 for (const comment of avis) {
     let nbEtoiles = ""
@@ -93,6 +100,5 @@ for (const comment of avis) {
     p.setAttribute("class", "product__comment")
     p.innerHTML = `${nbEtoiles}<br><b>${comment.utilisateur}:</b> ${comment.commentaire}`
 
-    productImgWrapper.append(newPiece)
     productComments.append(p)
 }

@@ -1,6 +1,5 @@
 .header {
-    padding: 1rem;
-    // margin-bottom: 2rem;
+    padding: 1rem 0;
     background: $gradient;
     color: #fff;
     position: sticky;
@@ -19,21 +18,19 @@
 
         @include tablette {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
     }
 
     &__img {
+        display: block;
         height: 12rem;
         width: 24rem;
-        object-fit: cover;
         border-radius: $rad;
-        margin-bottom: 1rem;
+        margin: 0 auto 1rem;
 
         @include tablette {
             height: 8rem;
-            margin-bottom: 0;
+            margin: 0;
         }
     }
 
@@ -54,7 +51,6 @@
     .basket {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
         cursor: pointer;
 
         .showTotal {

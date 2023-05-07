@@ -18,7 +18,7 @@ export class Card {
         cardLink.href = `./html/product.html?id=${piece.id}`
 
         const cardNew = cardClone.querySelector(".card__new")
-        if (!piece.newPiece) cardNew.style.display = "none"
+        if (piece.newPiece) cardNew.style.display = "block"
 
         const cardImg = cardClone.querySelector(".card__img")
         cardImg.src = piece.image

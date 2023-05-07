@@ -1,4 +1,4 @@
-import { postAvis } from "./avis.js"
+import { postAvis } from "./formAvis.js"
 import { Card } from "./Card.js"
 import { prixMax, totalBasket } from "./function.js"
 import { fetchData } from "./fetchData.js"
@@ -8,6 +8,7 @@ const pieces = await fetchData("./dataBase/pieces.json")
 // Recupere les data avis 
 const avis = await fetchData("./dataBase/avis.json")
 
+// Crée les cards
 const cards = document.querySelector(".cards")
 function showCard(pieces, avis) {
     for (const piece of pieces) {
@@ -17,6 +18,7 @@ function showCard(pieces, avis) {
 showCard(pieces, avis)
 
 postAvis()
+
 const showTotal = document.querySelector(".showTotal")
 showTotal.innerText = `${totalBasket()} €`
 
