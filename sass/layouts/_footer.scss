@@ -12,6 +12,7 @@
         @include tablette {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
     }
 
@@ -26,6 +27,16 @@
         flex: 1;
         margin: 0;
         font-family: Courgette, "Helvetica Neue", Helvetica, sans-serif;
-        font-size: 4rem;
+        font-size: 3.5rem;
+    }
+
+    p {
+
+        width: 100%;
+        margin: 0.5rem 0;
+
+        @include tablette {
+            text-align: left;
+        }
     }
 }
