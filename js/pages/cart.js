@@ -31,7 +31,7 @@ if (basket.length === 0) {
         inputQuantity.value = piece.quantity
         inputQuantity.addEventListener("input", (e) => {
             const quantity = Number(e.target.value)
-            const basket = getBasket()
+            const basket = getBasket("basket")
             const foundProduct = basket.find(p => p.id === piece.id)
             foundProduct.quantity = quantity
             saveBasket(basket)
@@ -68,7 +68,7 @@ if (basket.length === 0) {
         showTotal()
         modal.style.display = "none"
 
-        const basket = getBasket()
+        const basket = getBasket("basket")
         if (basket.length === 0) {
             cartHeading.style.display = "block"
             cartHeading.innerText = "Panier vide"
