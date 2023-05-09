@@ -31,7 +31,7 @@
     {
         "id": 4,
         "nom": "Liquide de frein",
-        "prix": 9.6,
+        "prix": 9.60,
         "categorie": "Freinage",
         "image": "assets/img/liquidBrake.webp",
         "disponibilite": true,
@@ -40,7 +40,7 @@
     {
         "id": 5,
         "nom": "Balai d'essuie-glace",
-        "prix": 29.1,
+        "prix": 29.10,
         "image": "assets/img/cleanGlass.webp",
         "description": "Performances d’essuyage au Top ! Longueur : 550 mm",
         "disponibilite": false

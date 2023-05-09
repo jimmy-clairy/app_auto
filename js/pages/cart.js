@@ -1,6 +1,6 @@
-import { addBasket, deleteProduct, getBasket, saveBasket, showTotal } from "../function.js";
+import { deleteProduct, getBasket, saveBasket, showTotal } from "../function.js";
 
-const basket = getBasket()
+const basket = getBasket("basket")
 const cartHeading = document.querySelector(".cart__heading")
 
 if (basket.length === 0) {
@@ -18,6 +18,7 @@ if (basket.length === 0) {
 
         const img = cardClone.querySelector(".card__img")
         img.src = `../${piece.image}`
+        img.alt = piece.nom
 
         const heading = cardClone.querySelector(".card__heading")
         heading.textContent = piece.nom
@@ -30,7 +31,7 @@ if (basket.length === 0) {
         inputQuantity.value = piece.quantity
         inputQuantity.addEventListener("input", (e) => {
             const quantity = Number(e.target.value)
-            const basket = getBasket()
+            const basket = getBasket("basket")
             const foundProduct = basket.find(p => p.id === piece.id)
             foundProduct.quantity = quantity
             saveBasket(basket)
@@ -67,7 +68,7 @@ if (basket.length === 0) {
         showTotal()
         modal.style.display = "none"
 
-        const basket = getBasket()
+        const basket = getBasket("basket")
         if (basket.length === 0) {
             cartHeading.style.display = "block"
             cartHeading.innerText = "Panier vide"
@@ -95,17 +96,17 @@ if (basket.length === 0) {
     const verif = []
     // FORM FIRST NAME --------------------------------------------------------
     form.firstName.addEventListener("input", () => {
-        verif[0] = /^[A-Za-z][A-Za-z\é\è\ê\ë\ä\à\ï\ç\ \-]+$/.test(firstName.value.trim());
+        verif[0] = /^[a-zA-ZéèêëôœîïûüàáâæçñÿýÌÏÎÙÚÛü]+\s?[a-zA-ZéèêëôœîïûüàáâæçñÿýÌÏÎÙÚÛü]*$/.test(firstName.value.trim());
         showMsgError(firstName, verif[0], "Prénom incorrect")
     })
     // FORM LAST NAME ---------------------------------------------------------
     form.lastName.addEventListener("input", () => {
-        verif[1] = /^[A-Za-z][A-Za-z\é\è\ê\ë\ä\à\ï\ç\ \-]+$/.test(lastName.value.trim());
+        verif[1] = /^[a-zA-ZéèêëôœîïûüàáâæçñÿýÌÏÎÙÚÛü]+\s?[a-zA-ZéèêëôœîïûüàáâæçñÿýÌÏÎÙÚÛü]*$/.test(lastName.value.trim());
         showMsgError(lastName, verif[1], "Nom incorrect")
     })
     // FORM ADDRESS -----------------------------------------------------------
     form.address.addEventListener("input", () => {
-        verif[2] = /^[A-Za-z0-9\é\è\ê\ë\ä\à\ï\ç\ \,\'\-]+$/.test(address.value.trim());
+        verif[2] = /^\d+\s[A-z]+\s[A-z]+/.test(address.value.trim());
         showMsgError(address, verif[2], "Adresse incorrecte")
     })
     // FORM CITY --------------------------------------------------------------
@@ -113,10 +114,15 @@ if (basket.length === 0) {
         verif[3] = /^[A-Za-z][A-Za-z\é\è\ê\ë\ä\à\ï\ç\ \-]+$/.test(city.value.trim());
         showMsgError(city, verif[3], "Ville incorrecte")
     })
+    // FORM POSTAL --------------------------------------------------------------
+    form.postal.addEventListener("input", () => {
+        verif[4] = /^\d{5}$/.test(postal.value.trim());
+        showMsgError(postal, verif[4], "Code postal incorrect")
+    })
     // // FORM EMAIL --------------------------------------------------------------
     form.email.addEventListener("input", () => {
-        verif[4] = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value.trim());
-        showMsgError(email, verif[4], "Email incorrect")
+        verif[5] = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+        showMsgError(email, verif[5], "Email incorrect")
     })
 
     // ORDER FINAL -------------------------------------------------------------
@@ -127,65 +133,19 @@ if (basket.length === 0) {
         // CHECK IF ALL TRUE
         const checkVerif = verif.find(v => v === false)
         if (checkVerif === undefined) {
-            const orderFinal = {
-                userInfo: {
-                    firstName: firstName.value,
-                    lastName: lastName.value,
-                    address: address.value,
-                    city: city.value,
-                    email: email.value
-                },
-                products: getBasket()
+            const contact = {
+                firstName: firstName.value,
+                lastName: lastName.value,
+                address: address.value,
+                city: city.value,
+                postal: postal.value,
+                email: email.value
             }
 
-            console.log(orderFinal);
+            console.log(contact);
 
-            localStorage.setItem("orderFinal", JSON.stringify(orderFinal))
-            // window.location = "confirm.html"
-            // localStorage.clear();
+            localStorage.setItem("contact", JSON.stringify(contact))
+            window.location = "confirm.html"
         }
     })
 }
-
-
-
-
-// form.addEventListener("submit", (e) => {
-//     e.preventDefault()
-//     console.log("submit");
-//     // CHECK IF ALL TRUE
-//     if (verifFirstName && verifLastName && verifAddress && verifCity && verifEmail) {
-
-//         for (const product of basket) {
-//             productId.push(product._id)
-//         }
-
-//         orderFinal = {
-//             contact: {
-//                 firstName: firstName.value,
-//                 lastName: lastName.value,
-//                 address: address.value,
-//                 city: city.value,
-//                 email: email.value
-//             },
-//             products: productId
-//         };
-
-//         fetch("http://localhost:3000/api/products/order", {
-//             method: "POST",
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(orderFinal)
-//         })
-//             .then(response => response.json())
-//             .then(data => {
-//                 window.location = "confirmation.html?orderId=" + data.orderId;
-//             });
-//         localStorage.clear(basket);
-
-//     } else {
-//         document.querySelector("#order").value = "Veuillez valider tous les champs.";
-//     }
-// })
