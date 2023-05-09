@@ -146,7 +146,6 @@ if (basket.length === 0) {
 
             localStorage.setItem("contact", JSON.stringify(contact))
             window.location = "confirm.html"
-            // localStorage.clear();
         }
     })
 }

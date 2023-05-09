@@ -46,3 +46,5 @@ for (const product of basket) {
 
 const allTotal = document.querySelector(".all__total")
 allTotal.innerHTML = `<td><b>Total: </b> ${allPrice} €</td>`
+
+localStorage.clear();
