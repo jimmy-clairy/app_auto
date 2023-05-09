@@ -11,8 +11,6 @@ const piece = foundPiece[0]
 const allAvis = await fetchData("../dataBase/avis.json")
 const avis = allAvis.filter(a => a.pieceId === id).reverse()
 
-
-
 /** Crée un produit a partir des données */
 const productHeading = document.querySelector(".product__heading")
 productHeading.textContent = piece.nom
@@ -51,7 +49,7 @@ formAddCart.addEventListener("submit", (e) => {
     // delete piece.prix
     piece.quantity = Number(formAddCart.quantity.value)
 
-    const basket = getBasket()
+    const basket = getBasket("basket")
     const foundProduct = basket.find(p => p.id === piece.id)
     if (foundProduct) {
         const modal = document.querySelector(".modal")

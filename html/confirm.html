@@ -9,7 +9,7 @@
     <meta name="description" content="Page Confirmation produits">
     <link rel="icon" type="image/webp" href="../assets/icon/iconj.webp" />
     <link rel="stylesheet" href="../css/style.css">
-    <!-- <script src="../js/pages/cart.js" type="module" defer></script> -->
+    <script src="../js/pages/confirm.js" type="module" defer></script>
 </head>
 
 <body>
@@ -30,6 +30,47 @@
     </header>
     <main class="main__confirm">
         <h2>Confirmation</h2>
+        <div class="document border">
+            <div class="document__header">
+                <div class="bloc__site">
+                    <a href="../index.html"><img class="header__img" src="../assets/icon/carRed.webp" alt="LOGO"></a>
+                    <h1 class="header__heading"><a href="../index.html">Pieces Auto</a></h1>
+                </div>
+                <div class="bloc__address">
+                    <p class="name font-bold"></p>
+                    <p class="address"></p>
+                    <p class="city"></p>
+                    <p class="email">jimcl@htlm.fr</p>
+                </div>
+            </div>
+            <table>
+                <caption>Récapitulatif des pieces auto commander</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Description</th>
+                        <th scope="col">Prix Unit</th>
+                        <th scope="col">Qté.</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <template id="tmp__tr">
+                        <tr id="bloc__tr">
+                            <th scope="row" class="tr__description">Jantes</th>
+                            <td class="tr__price">50</td>
+                            <td class="tr__quantity">4</td>
+                            <td class="tr__total">200</td>
+                        </tr>
+                    </template>
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="all__total" colspan="4">77</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </main>
 
     <footer class="footer">

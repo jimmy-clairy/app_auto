@@ -14,7 +14,7 @@ export function prixMax(objet) {
  * @returns {number}
  */
 export function totalBasket() {
-    const basket = getBasket()
+    const basket = getBasket("basket")
     let result = 0
 
     for (const product of basket) {
@@ -39,10 +39,11 @@ export function saveBasket(product) {
 
 /**
  * recuper l'objet du localStorage
+ * @param {string} key
  * @returns {object | null}
  */
-export function getBasket() {
-    const basket = localStorage.getItem("basket")
+export function getBasket(key) {
+    const basket = localStorage.getItem(key)
     if (basket === null) {
         return []
     }
@@ -54,7 +55,7 @@ export function getBasket() {
  * @param {object} product 
  */
 export function addBasket(product) {
-    const basket = getBasket()
+    const basket = getBasket("basket")
     // Verifie dans le panier si le produit est là
     const foundProduct = basket.find(p => p.id === product.id)
     if (foundProduct === undefined) {
@@ -70,7 +71,7 @@ export function addBasket(product) {
  * @param {number} id 
  */
 export function deleteProduct(id) {
-    const basket = getBasket()
+    const basket = getBasket("basket")
     const card = document.querySelector(`.card[data-id="${id}"]`)
     const newBasket = basket.filter(b => b.id !== id)
     saveBasket(newBasket)
