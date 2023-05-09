@@ -83,12 +83,12 @@ if (basket.length === 0) {
     })
 
     // FORMULAIRE *********************************************************************************
-    function showMsgError(element, verif, txt = "Champ") {
+    function showMsgError(element, verif, txt = "Champ incorrect") {
         const msgError = element.parentElement.querySelector(".msg-error")
         if (verif) {
             msgError.innerText = ""
         } else {
-            msgError.innerText = `${txt} incorrect`
+            msgError.innerText = txt
         }
     }
 
@@ -96,27 +96,27 @@ if (basket.length === 0) {
     // FORM FIRST NAME --------------------------------------------------------
     form.firstName.addEventListener("input", () => {
         verif[0] = /^[A-Za-z][A-Za-z\é\è\ê\ë\ä\à\ï\ç\ \-]+$/.test(firstName.value.trim());
-        showMsgError(firstName, verif[0], "Prénom")
+        showMsgError(firstName, verif[0], "Prénom incorrect")
     })
     // FORM LAST NAME ---------------------------------------------------------
     form.lastName.addEventListener("input", () => {
         verif[1] = /^[A-Za-z][A-Za-z\é\è\ê\ë\ä\à\ï\ç\ \-]+$/.test(lastName.value.trim());
-        showMsgError(lastName, verif[1], "Nom")
+        showMsgError(lastName, verif[1], "Nom incorrect")
     })
     // FORM ADDRESS -----------------------------------------------------------
     form.address.addEventListener("input", () => {
         verif[2] = /^[A-Za-z0-9\é\è\ê\ë\ä\à\ï\ç\ \,\'\-]+$/.test(address.value.trim());
-        showMsgError(address, verif[2], "Adresse")
+        showMsgError(address, verif[2], "Adresse incorrecte")
     })
     // FORM CITY --------------------------------------------------------------
     form.city.addEventListener("input", () => {
         verif[3] = /^[A-Za-z][A-Za-z\é\è\ê\ë\ä\à\ï\ç\ \-]+$/.test(city.value.trim());
-        showMsgError(city, verif[3], "Ville")
+        showMsgError(city, verif[3], "Ville incorrecte")
     })
     // // FORM EMAIL --------------------------------------------------------------
     form.email.addEventListener("input", () => {
         verif[4] = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value.trim());
-        showMsgError(email, verif[4], "Ville")
+        showMsgError(email, verif[4], "Email incorrect")
     })
 
     // ORDER FINAL -------------------------------------------------------------
@@ -141,8 +141,8 @@ if (basket.length === 0) {
             console.log(orderFinal);
 
             localStorage.setItem("orderFinal", JSON.stringify(orderFinal))
-            window.location = "confirm.html"
-            localStorage.clear(basket);
+            // window.location = "confirm.html"
+            // localStorage.clear();
         }
     })
 }

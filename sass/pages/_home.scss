@@ -6,62 +6,138 @@
     @include tablette {
         flex-direction: row;
     }
-}
 
-.filtres {
-    padding: 0 1rem;
-    height: fit-content;
+    .filtres {
+        padding: 0 1rem;
+        height: fit-content;
 
-    @include tablette {
-        width: 28rem;
+        @include tablette {
+            width: 28rem;
+        }
+
+        & .btn {
+            padding: .5rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        & input[type="range"] {
+            background: $cl-hover;
+            border: solid 1px $cl-primary;
+            border-radius: 10px;
+            height: .8rem;
+            outline: none;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+
+        input[type='range']::-webkit-slider-thumb {
+            width: 1.5rem;
+            -webkit-appearance: none;
+            height: 1.5rem;
+            background: $cl-primary;
+            border-radius: 50%;
+        }
+
+        & .rangePricevalue {
+            font-size: 1.8rem;
+        }
+
+        .form {
+            &__alert {
+                color: $cl-white;
+                padding: 1rem;
+                border-radius: $rad;
+                margin-bottom: 2rem;
+            }
+
+            & label {
+                display: block;
+                margin-bottom: 1rem;
+            }
+
+            & input {
+                border: $cl-primary 1px solid;
+                border-radius: $rad;
+                padding: 0.3rem;
+                font-size: 1.6rem;
+            }
+        }
     }
 
-    & .btn {
-        padding: .5rem;
-        margin-bottom: 1.5rem;
+    .cards {
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: $gap;
+    }
+
+    .card {
         width: 100%;
-    }
 
-    & input[type="range"] {
-        background: $cl-hover;
-        border: solid 1px $cl-primary;
-        border-radius: 10px;
-        height: .8rem;
-        outline: none;
-        cursor: pointer;
-        -webkit-appearance: none;
-    }
+        @include laptop {
+            width: calc(50% - ($gap / 2));
+        }
 
-    input[type='range']::-webkit-slider-thumb {
-        width: 1.5rem;
-        -webkit-appearance: none;
-        height: 1.5rem;
-        background: $cl-primary;
-        border-radius: 50%;
-    }
+        @include laptop-M {
+            width: calc(33.33% - (($gap * 2) / 3));
+        }
 
-    & .rangePricevalue {
-        font-size: 1.8rem;
-    }
+        @include laptop-L {
+            width: calc(25% - (($gap * 3) / 4));
+        }
 
-    .form {
-        &__alert {
-            color: $cl-white;
+        &__container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        &__img {
+            height: 13rem;
+            box-shadow: $shadow;
+        }
+
+        &__body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0 1rem;
+
+            @include laptop {
+                min-height: 25rem;
+            }
+        }
+
+        & p {
+            margin: .5rem auto;
+        }
+
+        &__description {
+            flex: 1;
+        }
+
+        &__available {
+            width: fit-content;
+            margin: auto;
+        }
+
+        &__btn {
             padding: 1rem;
-            border-radius: $rad;
-            margin-bottom: 2rem;
+            margin: 1rem;
         }
 
-        & label {
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        & input {
-            border: $cl-primary 1px solid;
+        &__avis {
+            margin-top: 1rem;
+            background-color: darken($cl-white, 5%);
             border-radius: $rad;
-            padding: 0.3rem;
-            font-size: 1.6rem;
+            padding: 1rem 1rem 0rem;
+            text-align: left;
+            display: none;
+
+            &.visible {
+                display: block;
+            }
         }
     }
 }

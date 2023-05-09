@@ -4,18 +4,13 @@
 
     @include tablette {
         display: flex;
-        align-items: flex-start;
         justify-content: space-between;
         gap: 4rem;
     }
 
-    @include laptop-1600 {
-        align-items: center;
-    }
-
     & .product {
-        margin: 0 auto;
         max-width: 40rem;
+        margin: 0 auto;
 
         @include tablette {
             width: 56%;
@@ -31,16 +26,12 @@
         }
 
         &__img {
-            height: 20rem;
+            height: 18rem;
         }
 
         &__price {
-            font-size: 2.6rem;
-            margin: 2rem 0;
-        }
-
-        &__add {
-            padding: 1rem 2rem;
+            font-size: 2.4rem;
+            margin: 1.6rem 0;
         }
 
         &__quantity {
@@ -51,6 +42,10 @@
                 border-radius: $rad;
                 border: 1px solid $cl-primary;
             }
+        }
+
+        &__add {
+            padding: 1rem 2rem;
         }
 
         &__comments {

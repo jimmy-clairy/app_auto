@@ -43,7 +43,7 @@
         "prix": 29.1,
         "image": "assets/img/cleanGlass.webp",
         "description": "Performances d’essuyage au Top ! Longueur : 550 mm",
-        "disponibilite": true
+        "disponibilite": false
     },
     {
         "id": 6,
@@ -62,8 +62,7 @@
         "categorie": "Suspension",
         "image": "assets/img/amortisseur.webp",
         "description": "Un amortisseur de qualité pour une conduite confortable",
-        "disponibilite": true,
-        "newPiece": true
+        "disponibilite": true
     },
     {
         "id": 8,
