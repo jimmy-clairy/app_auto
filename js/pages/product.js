@@ -1,5 +1,6 @@
 import { fetchData } from "../fetchData.js"
 import { addBasket, addStars, getBasket, showTotal } from "../function.js"
+import { chartAvis } from "../chart.js"
 
 const url = new URL(document.location)
 const id = Number(url.searchParams.get("id"))
@@ -76,6 +77,15 @@ const btnNo = document.querySelector(".modal__btn-no")
 btnNo.addEventListener("click", () => {
     modal.style.display = "none"
 })
+
+/** Graphique pour les avis */
+const nbCommentaires = [0, 0, 0, 0, 0]
+for (let commentaire of avis) {
+    nbCommentaires[commentaire.nbEtoiles - 1]++
+}
+nbCommentaires.reverse()
+const ctx = document.getElementById('myChart');
+chartAvis(ctx, nbCommentaires)
 
 /** Aperçus des avis */
 let productComments = document.querySelector(".product__comments")

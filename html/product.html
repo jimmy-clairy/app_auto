@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../css/style.css">
     <meta name="description" content="Descritif de la piece auto">
     <link rel="icon" type="image/webp" href="../assets/icon/iconj.webp" />
-    <script type="module" src="../js/pages/product.js" defer></script>
 </head>
 
 <body>
@@ -81,25 +80,7 @@
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
-    <script type="module">
-        // Graphique pour les avis
-        import { chartAvis } from "../js/chart.js"
-        import { fetchData } from "../js/fetchData.js"
-
-        const url = new URL(document.location)
-        const id = Number(url.searchParams.get("id"))
-
-        const allAvis = await fetchData("../dataBase/avis.json")
-        const avis = allAvis.filter(avis => avis.pieceId === id)
-
-        const nbCommentaires = [0, 0, 0, 0, 0]
-        for (let commentaire of avis) {
-            nbCommentaires[commentaire.nbEtoiles - 1]++
-        }
-        nbCommentaires.reverse()
-        const ctx = document.getElementById('myChart');
-        chartAvis(ctx, nbCommentaires)
-    </script>
+    <script type="module" src="../js/pages/product.js"></script>
 </body>
 
 </html>
