@@ -4,7 +4,8 @@
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: $cl-accept;
+    border: 1px $cl-accept solid;
+    background-color: lighten($cl-accept, 10);
     padding: 1rem;
     font-size: 2rem;
     width: 27rem;

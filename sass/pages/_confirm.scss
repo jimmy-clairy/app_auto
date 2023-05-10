@@ -13,12 +13,13 @@
         @include tablette {
             text-align: left;
             flex-direction: row;
-
+            padding: 0 2rem;
         }
     }
 
     .bloc__site {
         display: flex;
+        justify-content: space-between;
         align-items: center;
 
         @include tablette {
@@ -27,7 +28,25 @@
 
         img {
             margin: 0;
-            width: 20rem;
+            width: 14rem;
+            height: auto;
+
+            @include tablette {
+                width: 16rem;
+            }
+        }
+
+        h3 {
+            font-family: Courgette, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: clamp(2.4rem, 6vw, 3.2rem);
+            margin: 1rem 0;
+        }
+    }
+
+    .bloc__address {
+
+        .name {
+            font-size: 1.8rem;
         }
     }
 }

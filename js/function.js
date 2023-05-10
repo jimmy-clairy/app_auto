@@ -1,15 +1,4 @@
 /**
- * Donne le plus elevé en entier avec une dixaine superieur ex: 141.5 => 150
- * @param {Object} objet
- * @returns {number}
- */
-export function prixMax(objet) {
-    const piecesTry = [...objet]
-    piecesTry.sort((a, b) => b.prix - a.prix)
-    return Math.round(((piecesTry[0].prix + 4.99) / 10)) * 10
-}
-
-/**
  * Calcule le total du panier
  * @returns {number}
  */
@@ -76,4 +65,38 @@ export function deleteProduct(id) {
     const newBasket = basket.filter(b => b.id !== id)
     saveBasket(newBasket)
     card.remove()
+}
+
+/**
+ * Ajoute les étoiles aux avis
+ * @param {{nbEtoiles:number}} allAvis 
+ * @returns 
+ */
+export function addStars(allAvis) {
+    let textContent = ""
+    for (const avis of allAvis) {
+        let nbEtoiles = ""
+        switch (avis.nbEtoiles) {
+            case 1:
+                nbEtoiles = "⭐"
+                break
+            case 2:
+                nbEtoiles = "⭐⭐"
+                break
+            case 3:
+                nbEtoiles = "⭐⭐⭐"
+                break
+            case 4:
+                nbEtoiles = "⭐⭐⭐⭐"
+                break
+            case 5:
+                nbEtoiles = "⭐⭐⭐⭐⭐"
+                break
+
+            default:
+                break
+        }
+        textContent += `${nbEtoiles}<br> <b>${avis.utilisateur}:</b> ${avis.commentaire} <br><br>`
+    }
+    return textContent
 }

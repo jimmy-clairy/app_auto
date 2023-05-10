@@ -1,12 +1,17 @@
 import { deleteProduct, getBasket, saveBasket, showTotal } from "../function.js";
 
 const basket = getBasket("basket")
+const modal = document.querySelector(".modal")
 const cartHeading = document.querySelector(".cart__heading")
 
-if (basket.length === 0) {
+function emptyBasket() {
     cartHeading.style.display = "block"
     cartHeading.innerText = "Panier vide"
     cartHeading.style.fontSize = '36px'
+}
+
+if (basket.length === 0) {
+    emptyBasket()
 } else {
     cartHeading.style.display = "none"
 
@@ -48,7 +53,6 @@ if (basket.length === 0) {
 
         const btnDelete = cardClone.querySelector(".card__delete")
         btnDelete.addEventListener("click", () => {
-            const modal = document.querySelector(".modal")
             modal.dataset.id = btnDelete.closest(".card").dataset.id
             modal.style.display = "flex"
         })
@@ -61,7 +65,6 @@ if (basket.length === 0) {
 
     const btnYes = document.querySelector(".modal__btn-yes")
     btnYes.addEventListener("click", () => {
-        const modal = document.querySelector(".modal")
         const id = Number(modal.dataset.id)
 
         deleteProduct(id)
@@ -70,16 +73,13 @@ if (basket.length === 0) {
 
         const basket = getBasket("basket")
         if (basket.length === 0) {
-            cartHeading.style.display = "block"
-            cartHeading.innerText = "Panier vide"
-            cartHeading.style.fontSize = '36px'
+            emptyBasket()
             form.style.display = "none"
         }
     })
 
     const btnNo = document.querySelector(".modal__btn-no")
     btnNo.addEventListener("click", () => {
-        const modal = document.querySelector(".modal")
         modal.style.display = "none"
     })
 

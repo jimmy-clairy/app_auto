@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Pieces Auto</title>
 	<link rel="stylesheet" href="./css/style.css">
-	<script type="module" src="./js/index.js" defer></script>
+
 	<meta name="description" content="Application de pieces auto">
 	<link rel="icon" type="image/webp" href="./assets/icon/iconj.webp" />
 </head>
@@ -101,7 +101,7 @@
 			<div class="card">
 				<div class="card__container border">
 					<a class="card__link" href="">
-						<div class="card__new animatedALerte">Nouveau</div>
+						<div class="new animatedALerte">Nouveau</div>
 						<img class="card__img" src="" alt="" width="500" height="130">
 						<div class="card__body">
 							<h3 class="card__heading"></h3>
@@ -130,31 +130,7 @@
 		</div>
 	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.umd.min.js"></script>
-	<script type="module">
-		import { chartAvis, chartPieces } from "./js/chart.js"
-		import { fetchData } from "./js/fetchData.js"
-
-		// Graphique pour les avis
-		const allAvis = await fetchData("./dataBase/avis.json")
-		const nbCommentaires = [0, 0, 0, 0, 0]
-
-		for (let avis of allAvis) {
-			nbCommentaires[avis.nbEtoiles - 1]++
-		}
-		nbCommentaires.reverse()
-		const ctx = document.getElementById("graph-avis");
-		chartAvis(ctx, nbCommentaires, "y")
-
-		// Graphique pour les pieces
-		const pieces = await fetchData("./dataBase/pieces.json")
-		const nbPiecesDispo = [0, 0]
-
-		for (let piece of pieces) {
-			piece.disponibilite ? nbPiecesDispo[0]++ : nbPiecesDispo[1]++
-		}
-		const ctx1 = document.getElementById("graph-dispo");
-		chartPieces(ctx1, nbPiecesDispo)
-	</script>
+	<script type="module" src="./js/pages/index.js"></script>
 </body>
 
 </html>

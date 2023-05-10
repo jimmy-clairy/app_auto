@@ -4,7 +4,7 @@
  * @param {Array.<number>} data 
  * @param {string} axe 
  */
-export async function chartAvis(ctx, data, axe = "x") {
+export function chartAvis(ctx, data, axe = "x") {
     new Chart(ctx, {
         type: "bar",
         data: {
@@ -31,34 +31,6 @@ export async function chartAvis(ctx, data, axe = "x") {
         },
         options: {
             indexAxis: axe,
-        }
-    });
-}
-
-/**
- * Crée un graphique avec les données transmises
- * @param {HTMLElement} ctx 
- * @param {Array.<number>} data 
- * @param {string} axe 
- */
-export function chartPieces(ctx, data, axe = "x") {
-    new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: ["Disponible", "Non disponible"],
-            datasets: [{
-                label: "Pieces disponible",
-                data: data,
-                backgroundColor: [
-                    "#ff2a2a33",
-                    "#00000033"
-                ],
-                borderColor: [
-                    "#ff2a2a",
-                    "#000"
-                ],
-                borderWidth: 1
-            }]
         }
     });
 }

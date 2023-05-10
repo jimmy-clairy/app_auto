@@ -1,5 +1,5 @@
 import { fetchData } from "../fetchData.js"
-import { addBasket, getBasket, showTotal, totalBasket } from "../function.js"
+import { addBasket, addStars, getBasket, showTotal } from "../function.js"
 
 const url = new URL(document.location)
 const id = Number(url.searchParams.get("id"))
@@ -13,9 +13,9 @@ const avis = allAvis.filter(a => a.pieceId === id).reverse()
 
 /** Crée un produit a partir des données */
 const productHeading = document.querySelector(".product__heading")
-productHeading.textContent = piece.nom
+productHeading.innerText = piece.nom
 
-const newPiece = document.querySelector(".card__new")
+const newPiece = document.querySelector(".new")
 if (piece.newPiece) newPiece.style.display = "block"
 
 const productImg = document.querySelector(".product__img")
@@ -23,13 +23,13 @@ productImg.src = `../${piece.image}`
 productImg.alt = piece.nom
 
 const productDescription = document.querySelector(".product__description")
-productDescription.textContent = piece.description ?? "Pas de description pour le moment."
+productDescription.innerText = piece.description ?? "Pas de description pour le moment."
 
 const productPrice = document.querySelector(".product__price")
-productPrice.textContent = `Prix: ${piece.prix} €`
+productPrice.innerText = `Prix: ${piece.prix} €`
 
 const productAvailable = document.querySelector(".product__available")
-productAvailable.textContent = piece.disponibilite ? "En stock" : "Rupture"
+productAvailable.innerText = piece.disponibilite ? "En stock" : "Rupture"
 if (piece.disponibilite) {
     productAvailable.classList.add('stock')
     productAvailable.classList.remove('rupture')
@@ -43,7 +43,8 @@ if (!piece.disponibilite) formAddCart.setAttribute("hidden", "")
 
 showTotal()
 
-/** Formualire d'ajout du produit au panier */
+/** Formulaire d'ajout du produit au panier */
+const modal = document.querySelector(".modal")
 formAddCart.addEventListener("submit", (e) => {
     e.preventDefault()
     // delete piece.prix
@@ -52,7 +53,6 @@ formAddCart.addEventListener("submit", (e) => {
     const basket = getBasket("basket")
     const foundProduct = basket.find(p => p.id === piece.id)
     if (foundProduct) {
-        const modal = document.querySelector(".modal")
         modal.style.display = "flex"
     } else {
         const popUp = document.querySelector(".popUp")
@@ -67,46 +67,16 @@ formAddCart.addEventListener("submit", (e) => {
 
 const btnYes = document.querySelector(".modal__btn-yes")
 btnYes.addEventListener("click", () => {
-    const modal = document.querySelector(".modal")
     modal.style.display = "none"
     addBasket(piece)
-    const showTotal = document.querySelector(".showTotal")
-    showTotal.innerText = `${totalBasket()} €`
+    showTotal()
 })
 
 const btnNo = document.querySelector(".modal__btn-no")
 btnNo.addEventListener("click", () => {
-    const modal = document.querySelector(".modal")
     modal.style.display = "none"
 })
 
 /** Aperçus des avis */
-const productComments = document.querySelector(".product__comments")
-for (const comment of avis) {
-    let nbEtoiles = ""
-    switch (comment.nbEtoiles) {
-        case 1:
-            nbEtoiles = "⭐"
-            break
-        case 2:
-            nbEtoiles = "⭐⭐"
-            break
-        case 3:
-            nbEtoiles = "⭐⭐⭐"
-            break
-        case 4:
-            nbEtoiles = "⭐⭐⭐⭐"
-            break
-        case 5:
-            nbEtoiles = "⭐⭐⭐⭐⭐"
-            break
-
-        default:
-            break
-    }
-    const p = document.createElement('p')
-    p.setAttribute("class", "product__comment")
-    p.innerHTML = `${nbEtoiles}<br><b>${comment.utilisateur}:</b> ${comment.commentaire}`
-
-    productComments.append(p)
-}
+let productComments = document.querySelector(".product__comments")
+productComments.innerHTML = addStars(avis)

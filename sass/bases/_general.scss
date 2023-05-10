@@ -64,18 +64,20 @@ h2 {
 
 .stock,
 .rupture {
-    padding: 0.5rem;
+    padding: .5rem 1rem;
     border-radius: $rad;
     width: fit-content;
     margin: 2rem auto;
 }
 
 .stock {
-    background-color: $cl-accept;
+    border: 1px $cl-accept solid;
+    background-color: lighten($cl-accept, 10);
 }
 
 .rupture {
-    background-color: $cl-primary;
+    border: 1px $cl-primary solid;
+    background-color: $cl-hover;
 }
 
 svg {

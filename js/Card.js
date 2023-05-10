@@ -1,6 +1,8 @@
+import { addStars } from "./function.js"
+
 export class Card {
     /**
-    * Crée une card avec les data de piece
+    * Crée une card avec les data
     * @param {{id:number,
     *          image:string,
     *          nom:string,
@@ -8,6 +10,7 @@ export class Card {
     *          categorie:string,
     *          description:string,
     *          disponibilite:boolean}} piece 
+    * @param {string} avis 
     * @returns {HTMLElement}
     */
     constructor(piece, avis) {
@@ -17,7 +20,7 @@ export class Card {
         const cardLink = cardClone.querySelector(".card__link")
         cardLink.href = `./html/product.html?id=${piece.id}`
 
-        const cardNew = cardClone.querySelector(".card__new")
+        const cardNew = cardClone.querySelector(".new")
         if (piece.newPiece) cardNew.style.display = "block"
 
         const cardImg = cardClone.querySelector(".card__img")
@@ -61,6 +64,12 @@ export class Card {
         return cardClone
     }
 
+    /**
+     * Ajoute les 3 derniers avis
+     * @param {number} id 
+     * @param {string} avis 
+     * @returns {HTMLElement}
+     */
     addAvis(id, avis) {
 
         const avisIdReverse = avis.filter(a => a.pieceId === id).reverse()
@@ -68,33 +77,7 @@ export class Card {
         for (let i = 0; i < 3; i++) {
             last3Avis.push(avisIdReverse[i])
         }
-        let textContent = ""
-        let nbEtoiles = ""
-        for (const avis of last3Avis) {
-            switch (avis.nbEtoiles) {
-                case 1:
-                    nbEtoiles = "⭐"
-                    break
-                case 2:
-                    nbEtoiles = "⭐⭐"
-                    break
-                case 3:
-                    nbEtoiles = "⭐⭐⭐"
-                    break
-                case 4:
-                    nbEtoiles = "⭐⭐⭐⭐"
-                    break
-                case 5:
-                    nbEtoiles = "⭐⭐⭐⭐⭐"
-                    break
-
-                default:
-                    break
-            }
-            textContent += `${nbEtoiles}<br> <b>${avis.utilisateur}:</b> ${avis.commentaire} <br><br>`
-        }
-
-        return textContent
+        return addStars(last3Avis)
     }
 
     /** @param {PointerEvent} e */
