@@ -7,7 +7,7 @@
 	<title>Pieces Auto</title>
 	<link rel="stylesheet" href="./css/style.css">
 	<meta name="description" content="Application de pieces auto">
-	<link rel="icon" type="image/webp" href="./assets/icon/iconj.webp" />
+	<link rel="icon" type="image/webp" href="./assets/icon/iconj.webp">
 </head>
 
 <body>
@@ -37,15 +37,15 @@
 					<button class="btn border btn-detry">Trier par prix décroissants</button>
 					<button class="btn border btn-dispo">Filtrer les pièces disponible</button>
 					<button class="btn border btn-new">Filtrer les pièces nouvelles</button>
-					<label for="rangePrice">
-						<p class="font-bold">Prix</p>
-						<div class="rangePrice">
-							<span class="rangePrice__min">5 </span>
-							<input type="range" name="price" id="rangePrice" min="5" max="200" step="5" value="200">
-							<span class="rangePrice__max"> 200</span>
-						</div>
-						<p class="font-bold">Value: <output class="rangePricevalue" id="rangePricevalue"></output></p>
-					</label>
+					<label for="rangePrice"></label>
+					<p class="font-bold">Prix</p>
+					<div class="rangePrice">
+						<span class="rangePrice__min">5 </span>
+						<input type="range" name="price" id="rangePrice" min="5" max="200" step="5" value="200">
+						<span class="rangePrice__max"> 200</span>
+					</div>
+					<p class="font-bold">Value: <output class="rangePricevalue" id="rangePricevalue"></output></p>
+
 				</div>
 			</div>
 			<details>
@@ -93,7 +93,7 @@
 		</section>
 
 		<!-- Cards produits -->
-		<section class="cards"></section>
+		<div class="cards"></div>
 		<!-- Template Card -->
 		<template id="card-tmp">
 
