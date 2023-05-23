@@ -32,10 +32,19 @@ if (basket.length === 0) {
         inputQuantity.parentElement.setAttribute("for", `card__quantity-${piece.id}`)
         inputQuantity.setAttribute("id", `card__quantity-${piece.id}`)
         inputQuantity.setAttribute("name", `card__quantity-${piece.id}`)
+        inputQuantity.setAttribute("value", piece.quantity)
 
-        inputQuantity.value = piece.quantity
-        inputQuantity.addEventListener("input", (e) => {
-            const quantity = Number(e.target.value)
+        inputQuantity.addEventListener("change", (e) => {
+            let quantity = Number(e.target.value)
+            if (quantity < 0) {
+                alert('Quantité négative non autorisée quantité remise a 1')
+                inputQuantity.value = 1
+                quantity = 1
+            } else if (quantity > 100) {
+                alert('Quantité supérieur à 100 non autorisée quantité remise a 100')
+                inputQuantity.value = 100
+                quantity = 100
+            }
             const basket = getBasket("basket")
             const foundProduct = basket.find(p => p.id === piece.id)
             foundProduct.quantity = quantity
