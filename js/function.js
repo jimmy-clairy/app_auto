@@ -1,6 +1,6 @@
 /**
- * Calcule le total du panier
- * @returns {number}
+ * Calcule le montant total du panier.
+ * @returns {number} - Le montant total du panier.
  */
 export function totalBasket() {
     const basket = getBasket("basket")
@@ -12,24 +12,28 @@ export function totalBasket() {
     return result
 }
 
-/** Affiche le total */
+/**
+ * Affiche le total du panier dans l'élément avec la classe "showTotal".
+ * @returns {void}
+ */
 export function showTotal() {
     const showTotal = document.querySelector(".showTotal")
     showTotal.innerText = `${totalBasket()} €`
 }
 
 /**
- * Sauvegarde objet dans localStorage
- * @param {object} product 
+ * Enregistre le contenu du panier dans le stockage local.
+ * @param {Array} product - Le contenu du panier à enregistrer.
+ * @returns {void}
  */
 export function saveBasket(product) {
     localStorage.setItem("basket", JSON.stringify(product))
 }
 
 /**
- * recuper l'objet du localStorage
- * @param {string} key
- * @returns {object | null}
+ * Récupère le contenu du panier à partir de la clé spécifiée.
+ * @param {string} key - La clé d'accès au panier dans le stockage local.
+ * @returns {Array} - Le contenu du panier sous forme de tableau d'objets.
  */
 export function getBasket(key) {
     const basket = localStorage.getItem(key)
@@ -40,8 +44,11 @@ export function getBasket(key) {
 }
 
 /**
- * Ajoute un objet dans le localStorage
- * @param {object} product 
+ * Ajoute un produit au panier.
+ * @param {Object} product - Le produit à ajouter.
+ * @param {number} product.id - L'identifiant du produit.
+ * @param {number} product.quantity - La quantité du produit.
+ * @returns {void}
  */
 export function addBasket(product) {
     const basket = getBasket("basket")
@@ -56,8 +63,9 @@ export function addBasket(product) {
 }
 
 /**
- * Supprime un produit dans le localStorage et le HTML
- * @param {number} id 
+ * Supprime un produit du panier.
+ * @param {number} id - L'identifiant du produit à supprimer.
+ * @returns {void}
  */
 export function deleteProduct(id) {
     const basket = getBasket("basket")
@@ -68,9 +76,12 @@ export function deleteProduct(id) {
 }
 
 /**
- * Ajoute les étoiles aux avis
- * @param {{nbEtoiles:number}} allAvis 
- * @returns 
+ * Génère une chaîne de caractères représentant les avis avec des étoiles.
+ * @param {Array} allAvis - Les avis à afficher.
+ * @param {number} allAvis.nbEtoiles - Le nombre d'étoiles de l'avis.
+ * @param {string} allAvis.utilisateur - L'utilisateur ayant laissé l'avis.
+ * @param {string} allAvis.commentaire - Le commentaire de l'avis.
+ * @returns {string} - La chaîne de caractères représentant les avis avec des étoiles.
  */
 export function addStars(allAvis) {
     let textContent = ""
