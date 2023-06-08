@@ -80,7 +80,10 @@ export class Card {
         return addStars(last3Avis)
     }
 
-    /** @param {PointerEvent} e */
+    /**
+     * Affiche ou cache les avis de la carte.
+     * @param {PointerEvent} e
+     */
     showAvis(e) {
         const card = e.target.closest(".card")
 
