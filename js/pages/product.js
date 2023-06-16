@@ -2,7 +2,16 @@ import { fetchData } from "../fetchData.js"
 import { addBasket, addStars, getBasket, showTotal } from "../function.js"
 import { chartAvis } from "../chart.js"
 
+/**
+ * Crée un objet URL à partir de la location du document.
+ * @type {URL}
+ */
 const url = new URL(document.location)
+
+/**
+ * Obtient l'ID à partir des paramètres de recherche de l'URL et le convertit en nombre.
+ * @type {number}
+ */
 const id = Number(url.searchParams.get("id"))
 
 const pieces = await fetchData("../dataBase/pieces.json")
